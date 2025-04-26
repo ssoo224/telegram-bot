@@ -27,6 +27,18 @@ if ($text == "/vs") {
         // رد للمستخدم يحتوي على رابط الملف الصوتي
         $response = "تم استلام الرسالة الصوتية. يمكنك الاستماع إليها من الرابط التالي:\n" . $voice_url;
         file_get_contents($website."/sendmessage?chat_id=".$chat_id."&text=".urlencode($response));
+    } elseif (isset($update["message"]["audio"])) {
+        // إذا كانت الرسالة تحتوي على ملف صوتي عادي
+        $audio_file_id = $update["message"]["audio"]["file_id"];
+        
+        // جلب رابط الملف الصوتي
+        $file_info = json_decode(file_get_contents($website."/getFile?file_id=".$audio_file_id), TRUE);
+        $file_path = $file_info["result"]["file_path"];
+        $audio_url = "https://api.telegram.org/file/bot".$token."/".$file_path;
+
+        // رد للمستخدم يحتوي على رابط الملف الصوتي
+        $response = "تم استلام التسجيل الصوتي. يمكنك الاستماع إليه من الرابط التالي:\n" . $audio_url;
+        file_get_contents($website."/sendmessage?chat_id=".$chat_id."&text=".urlencode($response));
     } else {
         $response = "لم يتم إرسال رسالة صوتية.";
         file_get_contents($website."/sendmessage?chat_id=".$chat_id."&text=".urlencode($response));
