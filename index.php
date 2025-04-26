@@ -10,7 +10,7 @@ $admmm = "7115002714"; //ايدي المطور
 
 $tbbots = "I_e_e_l"; //معرف المطور بدون @
 
-$API_KEY = "7647065808:AAGAY2cZrHEWX5zCQRLaKC4-CzaXe5Xhu_I";
+$API_KEY = "7873853121:AAHznmevVDj3F8r-vC6ctQzXeJiXaAmdZ8I";
 
 $url_info = file_get_contents("https://api.telegram.org/bot$API_KEY/getMe");
 
