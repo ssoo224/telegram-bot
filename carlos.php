@@ -1,11 +1,11 @@
 <?php
-$info = json_decode(file_get_contents("admin.json"),1);
-$token = $info['token'];
-define('API_KEY',$token);
-echo file_get_contents("https://api.telegram.org/bot" . API_KEY . "/setwebhook?url=" . $_SERVER['SERVER_NAME'] . "" . $_SERVER['SCRIPT_NAME']);
-            function bot($method,$datas=[]){
+//=========التوكن=========//
+$token = "7767876547:AAFBADBi9A6ooqjDUz6w0Yzmm25LI615Nds"; 
+define("API_KEY", $token);
+echo "setWebhook ~> <a href=\"https://api.telegram.org/bot".API_KEY."/setwebhook?url=".$_SERVER['SERVER_NAME']."".$_SERVER['SCRIPT_NAME']."\">https://api.telegram.org/bot".API_KEY."/setwebhook?url=".$_SERVER['SERVER_NAME']."".$_SERVER['SCRIPT_NAME']."</a>";
+function bot($method,$datas=[]){
     $url = "https://api.telegram.org/bot".API_KEY."/".$method;
-$ch = curl_init();
+    $ch = curl_init();
     curl_setopt($ch,CURLOPT_URL,$url);
     curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
     curl_setopt($ch,CURLOPT_POSTFIELDS,$datas);
@@ -15,25 +15,6 @@ $ch = curl_init();
     }else{
         return json_decode($res);
     }
-}
-function SendChatAction($chat_id, $action)
-{
-    return bot('sendChatAction', [
-        'chat_id' => $chat_id,
-        'action' => $action
-    ]);
-}
-function SendMessage($chat_id, $text, $parse_mode = "MARKDOWN", $disable_web_page_preview = true, $reply_to_message_id = null, $reply_markup = null)
-{
-    return bot('sendMessage', [
-        'chat_id' => $chat_id,
-        'text' => $text,
-        'parse_mode' => $parse_mode,
-        'disable_web_page_preview' => $disable_web_page_preview,
-        'disable_notification' => false,
-        'reply_to_message_id' => $reply_to_message_id,
-        'reply_markup' => $reply_markup
-    ]);
 }
 $update = json_decode(file_get_contents('php://input'));
 $message = $update->message; $chat_id = $message->chat->id;
@@ -112,7 +93,7 @@ $cmssg = explode("\n",$cmg);
 $cmsg = count($cmssg);
 
 $info = json_decode(file_get_contents("admin.json"),1);
-$coss = json_decode(file_get_contents("data/LEGR.json"),1);
+$coss = json_decode(file_get_contents("data/carlos.json"),1);
 $malke = $coss['malk'];
 if($malke == null){
 $malkei = $info['id'];
@@ -123,12 +104,19 @@ $admin = $malkei;
 $From_Dev = $info['id'];
 $UserDevpe = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$admin"))->result->username;
 $NameDevpe = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$admin"))->result->first_name;
-$Dev = array("$admin","$From_Dev");
-$Dev = array("$admin","$From_Dev");
-$eri = array("1918338620", "1918338620" );
-$sudo = $admin;
-$DevUser = "@$UserDevpe";
 
+#############
+$admin = "7115002714";
+$Dev = array("$admin","7115002714");
+$eri = array("$admin","7115002714");
+$idbot = "7767876547";
+$sudo = "$admin";
+$buy = "kindi3";
+$DevUser = "@$buy";
+$devchink = "I_e_e_l";
+$userbot = "Vischecbot";
+$chsource = "$devchink";
+############
 if ($tc == 'private'){  
 @$user = json_decode(file_get_contents("data/user.json"),true);
 if(!in_array($from_id, $user["userlist"])) {
@@ -157,6 +145,7 @@ $user = json_encode($user,true);
 file_put_contents("data/user.json",$user);
 }
 }
+
 $grouplisturl = $user["grouplist"];
 if( $text == "الروابط" or $text == "⋄ روابط الكروبات" or $text == "قائمة روابط الكروبات" or $text == "قائمه روابط الكروبات" or $text == "قائمة الروابط" and $settings["silentlist"]!== NULL){
 if (in_array($from_id,$Dev) or in_array($from_id,$eri)) {
@@ -179,7 +168,9 @@ if( $text=="/start" &&  $tc == "private" or $text=="⋄ رجوع" &&  $tc == "pr
 if(in_array($from_id,$Dev) or in_array($from_id,$eri)){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
-'text'=>"💌╖اهلا بيك حبيبي [المطور](tg://user?id=$from_id)\n⚙️╢ تقدر تتحكم باوامر البوت عن طريق\n🔍╢ الكيبور اللي ظهرتلك تحت ↘️\n🔰╜ للدخول لقناة السورس دوس [هنا](t.me/FunctionCodee)",
+'text'=>"⋄︙ اهلأ عزيزي - [$first_name](tg://user?id=$from_id)
+⋄︙ اليك قائمة المطور الخاصه في بوتك
+⋄︙ [تحديثات السورس الجديده](https://t.me/FT_III)",
 'parse_mode'=>"markdown",
 'disable_web_page_preview'=>true,
 'reply_to_message_id'=>$message->message_id,
@@ -385,10 +376,10 @@ $nazar  = explode("\n",$nazarr_info);
 $nazarr_infos = file_get_contents("data/nazar/$chat_id/nazr.txt");
 $nazarr = explode ("\n",$nazarr_infos);
 /*===== dev ~ @FF8FFI =====*/
-$LEGRs_info = file_get_contents("data/LEGR/$chat_id.txt");
-$LEGR  = explode("\n",$LEGRs_info);
-$LEGRs_infos = file_get_contents("data/LEGR/$chat_id/crlo.txt");
-$LEGRs = explode ("\n",$LEGRs_infos);
+$carloss_info = file_get_contents("data/carlos/$chat_id.txt");
+$carlos  = explode("\n",$carloss_info);
+$carloss_infos = file_get_contents("data/carlos/$chat_id/crlo.txt");
+$carloss = explode ("\n",$carloss_infos);
 /*===== dev ~ @FF8FFI =====*/
 $mangers_info = file_get_contents("data/manger/$chat_id.txt");
 $manger  = explode("\n",$mangers_info);
@@ -422,8 +413,8 @@ mkdir("data/nazar");
 mkdir("data/nazar/$chat_id");
 mkdir("data/ban");
 mkdir("data/ban/$chat_id");
-mkdir("data/LEGR");
-mkdir("data/LEGR/$chat_id");
+mkdir("data/carlos");
+mkdir("data/carlos/$chat_id");
 mkdir("data/manger");
 mkdir("data/manger/$chat_id");
 mkdir("data/motay");
@@ -436,8 +427,8 @@ mkdir("data/miss/$chat_id");
 mkdir("data/miss/$chat_id/miss.json");
 mkdir("statistics");
 
-$DRPP = "1903498836:AAFA1ai14owFsm8ugqRpEeqbnOhDZKrGeNA";
-$ckl = "@KKDRR"; 
+$DRPP = "$token";
+$ckl = "@$devchink"; 
 $ch2 = file_get_contents("https://api.telegram.org/bot$DRPP/getChatMember?chat_id=".$ckl."&user_id=".$from_id);
 $getch2 = json_decode(file_get_contents("http://api.telegram.org/bot$DRPP/getChat?chat_id=".$ckl))->result;
 $Namech2 = $getch2->title;
@@ -449,10 +440,9 @@ bot('sendMessage', [
 'text'=>'
 ⌔︙عذرا عزيزي ⚠️.
 ⌔︙لا يمكنك استخدام البوت 🔰.
-⌔︙الا بعد الاشتراك بقناة 🚫.
+⌔︙الا بعد الاشتراك بالقناة 🚫.
 ⌔︙القناة : '.$ckl.' ✅
-',
-'reply_to_message_id'=>$message->message_id,
+','reply_to_message_id'=>$message->message_id,
 'reply_markup'=>json_encode([
 'inline_keyboard'=>[
 [['text'=>$Namech2,'url'=>"https://t.me/$getch2li"]],
@@ -473,12 +463,12 @@ bot('sendMessage',[
 'reply_markup'=>json_encode([
 'inline_keyboard'=>[
 [['text'=>"🎖اضغط هنا 🎖",'url'=>"t.me/$setch"]],]])]);
- bot("sendmessage",[
-      "chat_id"=>$Devd,
-      "text"=>"",
-      ]);
-      die('اا');
-  }
+bot("sendmessage",[
+"chat_id"=>$Devd,
+"text"=>"",
+]);
+die('اا');
+}
 bot('sendMessage',['chat_id'=>$chat_id, 'text'=>" ",'reply_to_message_id'=>$message->message_id,]);}}}
 
 $new = $message->new_chat_member;
@@ -490,7 +480,7 @@ bot('sendMessage', [
 ⋄︙لحماية المجموعات من التخريب
 ⋄︙يتم حذف (الفشار،الاباحي،...)
 ⋄︙البوت الاول علي التلجرام
-⋄︙قم برفعي كمشرف و ارسل ← تفعيل
+⋄︙قم برفعي كمشرف وارسل ← تفعيل
 ⋄︙المطور ← [$DevUser]
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 'reply_to_message_id'=>$message->message_id,
@@ -508,7 +498,7 @@ $info = "مطور الاساسي";
 elseif(in_array($from_id,$nazar) ){
 $info = "منشئ اساسي";
 }
-elseif(in_array($from_id,$LEGR) ){
+elseif(in_array($from_id,$carlos) ){
 $info = "منشئ";
 }
 elseif($status == "creator"){
@@ -632,7 +622,7 @@ $settings = json_encode($settings,true);
 file_put_contents("data/$chat_id.json",$settings);
 }}
 elseif($text == "تنزيل الكل" and $settings["SETT"]=="$from_id"){
-if($status == 'creator' or in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$LEGR) || in_array($from_id,$nazar) || in_array($from_id,$eri)){
+if($status == 'creator' or in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$carlos) || in_array($from_id,$nazar) || in_array($from_id,$eri)){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"*⋄︙ارسل الامر الجديد الان .*",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -968,12 +958,12 @@ bot('SendMessage',['chat_id'=>$chat_id, 'text'=>"
 $REMAS = str_replace('رفع مطور ثانوي ','',$text);
 if ($text =="رفع مطور ثانوي $REMAS" and preg_match('/([0-9])/i',$REMAS) and $REMAS !=$id_Bot and  in_array($from_id,$Dev) || in_array($from_id,$eri) and !in_array($REMAS,$developer)){
 $REMAS= str_replace('رفع مطور ثانوي ','',$text);
-$LEGRid = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMAS"))->result->username;
-$LEGRname = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMAS"))->result->first_name;
+$carlosid = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMAS"))->result->username;
+$carlosname = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMAS"))->result->first_name;
 file_put_contents("data/developers/developer.txt",$REMAS ."\n " , FILE_APPEND);
-file_put_contents("data/developers/developers.txt",'[@'.$LEGRid ."]". "\n " , FILE_APPEND);
+file_put_contents("data/developers/developers.txt",'[@'.$carlosid ."]". "\n " , FILE_APPEND);
 bot('SendMessage',['chat_id'=>$chat_id,
-'text'=>"⋄︙العضو ⋙「 [$LEGRname](tg://user?id=$REMAS) 」 
+'text'=>"⋄︙العضو ⋙「 [$carlosname](tg://user?id=$REMAS) 」 
 ⋄︙تم ترقية ليصبح مطور ثانوي
 ",'parse_mode'=>'markdown','reply_to_message_id'=>$message->message_id,'disable_web_page_preview'=>true,
 ]);
@@ -981,10 +971,10 @@ bot('SendMessage',['chat_id'=>$chat_id,
 $REMAS = str_replace('رفع مطور ثانوي ','',$text);
 if ($text =="رفع مطور ثانوي $REMAS" and preg_match('/([0-9])/i',$REMAS) and $REMAS !=$id_Bot and in_array($from_id,$Dev) and  in_array($from_id,$eri) and in_array($REMAS,$developer)){
 $REMAS= str_replace('رفع مطور ثانوي ','',$text);
-$LEGRid = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMAS"))->result->username;
-$LEGRname = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMAS"))->result->first_name;
+$carlosid = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMAS"))->result->username;
+$carlosname = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMAS"))->result->first_name;
 bot('SendMessage',['chat_id'=>$chat_id,
-'text'=>"⋄︙العضو ⋙「 [$LEGRname](tg://user?id=$REMAS) 」 
+'text'=>"⋄︙العضو ⋙「 [$carlosname](tg://user?id=$REMAS) 」 
 ⋄︙هوه بالفعل مطور ثانوي
 ",'parse_mode'=>'markdown','reply_to_message_id'=>$message->message_id,'disable_web_page_preview'=>true,
 ]);
@@ -993,8 +983,8 @@ if(in_array($from_id,$Dev) || in_array($from_id,$eri)){
 $REMASID = str_replace('تنزيل مطور ثانوي ','',$text);
 if ($text =="تنزيل مطور ثانوي $REMASID" and preg_match('/([0-9])/i',$REMAS) and in_array($REMASID,$developer)){
 $REMASID= str_replace('تنزيل مطور ثانوي ','',$text);
-$LEGRid = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMASID"))->result->username;
-$LEGRname = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMASID"))->result->first_name;
+$carlosid = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMASID"))->result->username;
+$carlosname = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMASID"))->result->first_name;
 $REMASID_info = file_get_contents("data/developers/$chat_id.txt");
 $devr = file_get_contents("data/developers/$chat_id/developer.txt");
 $devr1 = explode("             \n",$devr);
@@ -1003,7 +993,7 @@ $str2 = str_replace("⌯ ❨ [" . "@". $catlosid ."] ❩ " . "•" . " ❨ `". $
 file_put_contents("data/developers/developer.txt",$str);
 file_put_contents("data/developers/developers.txt",$str);
 bot('SendMessage',['chat_id'=>$chat_id, 'text'=>"
-⋄︙ العضو ⋙「 [$LEGRname](tg://user?id=$REMASID) 」 
+⋄︙ العضو ⋙「 [$carlosname](tg://user?id=$REMASID) 」 
 ⋄︙تم تنزيله من قائمة المطورين الثانوي
 ", 'parse_mode'=>'markdown','reply_to_message_id'=>$message->message_id,'disable_web_page_preview'=>true, ]); }}
 
@@ -1011,10 +1001,10 @@ if(in_array($from_id,$Dev)){
 $REMASID = str_replace('تنزيل مطور ثانوي ','',$text);
 if ($text =="تنزيل مطور ثانوي $REMASID" and preg_match('/([0-9])/i',$REMAS) and !in_array($REMASID,$developer)){
 $REMASID= str_replace('تنزيل مطور ثانوي ','',$text);
-$LEGRid = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMASID"))->result->username;
-$LEGRname = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMASID"))->result->first_name;
+$carlosid = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMASID"))->result->username;
+$carlosname = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$REMASID"))->result->first_name;
 bot('SendMessage',['chat_id'=>$chat_id, 'text'=>"
-⋄︙ العضو ⋙「 [$LEGRname](tg://user?id=$REMASID) 」 
+⋄︙ العضو ⋙「 [$carlosname](tg://user?id=$REMASID) 」 
 ⋄︙هوه ليس مطور ثانوي ليتم تنزيله
 ",'parse_mode'=>'markdown','reply_to_message_id'=>$message->message_id,'disable_web_page_preview'=>true, ]); } }
 
@@ -1187,8 +1177,8 @@ bot('SendMessage',['chat_id'=>$chat_id,
 
 if($status == "creator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$eri) || in_array($from_id,$nazar)) {
 if($rt && $text == "رفع منشئ" or $rt && $text == "من" and $text==$settings["information"]["mans"] and !in_array($re_id,$manger)){
-			file_put_contents("data/LEGR/$chat_id.txt",$re_id . "\n" , FILE_APPEND);
-			file_put_contents("data/LEGR/$chat_id/crlo.txt" , " *𓆩* [" . "@". $re_user ."] *𓆪* " . "»" . " *𓆩* `". $re_id ."` *𓆪* ". "\n" , FILE_APPEND);
+			file_put_contents("data/carlos/$chat_id.txt",$re_id . "\n" , FILE_APPEND);
+			file_put_contents("data/carlos/$chat_id/crlo.txt" , " *𓆩* [" . "@". $re_user ."] *𓆪* " . "»" . " *𓆩* `". $re_id ."` *𓆪* ". "\n" , FILE_APPEND);
 bot('SendMessage',[
 'chat_id'=>$chat_id,
 'text'=>"⋄︙العضو ⋙「 [$re_name](tg://user?id=$re_id) 」 
@@ -1199,7 +1189,7 @@ bot('SendMessage',[
 'disable_web_page_preview'=>true,
 ]);
 }
-elseif($rt && $text == "رفع منشئ" or $rt && $text == "من" and $text == "رفع منشئ" and $text == "من" and $text==$settings["information"]["mans"] and in_array($re_id,$LEGR)){
+elseif($rt && $text == "رفع منشئ" or $rt && $text == "من" and $text == "رفع منشئ" and $text == "من" and $text==$settings["information"]["mans"] and in_array($re_id,$carlos)){
 bot('SendMessage',['chat_id'=>$chat_id,
 'text'=>"⋄︙العضو ⋙「 [$re_name](tg://user?id=$re_id) 」 
 ⋄︙ هوه بالفعل منشئ 
@@ -1207,16 +1197,16 @@ bot('SendMessage',['chat_id'=>$chat_id,
 'parse_mode'=>'markdown','reply_to_message_id'=>$message->message_id,'disable_web_page_preview'=>true,
 ]);
 }
-$IDLEGR = str_replace('رفع منشئ ','',$text);
-if ($text =="رفع منشئ $IDLEGR" and preg_match('/([0-9])/i',$IDLEGR) and !in_array($IDLEGR,$LEGR)){
-$IDLEGR= str_replace('رفع منشئ ','',$text);
-$LEGRID = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDLEGR"))->result->username;
-$LEGRNAME = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDLEGR"))->result->first_name;
-			file_put_contents("data/LEGR/$chat_id.txt",$IDLEGR . "\n" , FILE_APPEND);
-			file_put_contents("data/LEGR/$chat_id/crlo.txt" , " *𓆩* [" . "@". $LEGRID ."] *𓆪* " . "»" . " *𓆩* `". $IDLEGR ."` *𓆪* ". "\n" , FILE_APPEND);
+$IDCARLOS = str_replace('رفع منشئ ','',$text);
+if ($text =="رفع منشئ $IDCARLOS" and preg_match('/([0-9])/i',$IDCARLOS) and !in_array($IDCARLOS,$carlos)){
+$IDCARLOS= str_replace('رفع منشئ ','',$text);
+$CARLOSID = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDCARLOS"))->result->username;
+$CARLOSNAME = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDCARLOS"))->result->first_name;
+			file_put_contents("data/carlos/$chat_id.txt",$IDCARLOS . "\n" , FILE_APPEND);
+			file_put_contents("data/carlos/$chat_id/crlo.txt" , " *𓆩* [" . "@". $CARLOSID ."] *𓆪* " . "»" . " *𓆩* `". $IDCARLOS ."` *𓆪* ". "\n" , FILE_APPEND);
 bot('SendMessage',[
 'chat_id'=>$chat_id,
-'text'=>"⋄︙لعضو ⋙「 [$LEGRNAME](tg://user?id=$IDLEGR) 」 
+'text'=>"⋄︙لعضو ⋙「 [$CARLOSNAME](tg://user?id=$IDCARLOS) 」 
 ⋄︙ تم ترقية ليصبح منشئ
 "
 ,'parse_mode'=>'markdown',
@@ -1224,53 +1214,53 @@ bot('SendMessage',[
 'disable_web_page_preview'=>true,
 ]);
 }
-$IDLEGR = str_replace('رفع منشئ ','',$text);
-if ($text =="رفع منشئ $IDLEGR" and preg_match('/([0-9])/i',$IDLEGR) and in_array($IDLEGR,$LEGR)){
-$IDLEGR= str_replace('رفع منشئ ','',$text);
-$LEGRID = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDLEGR"))->result->username;
-$LEGRNAME = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDLEGR"))->result->first_name;
+$IDCARLOS = str_replace('رفع منشئ ','',$text);
+if ($text =="رفع منشئ $IDCARLOS" and preg_match('/([0-9])/i',$IDCARLOS) and in_array($IDCARLOS,$carlos)){
+$IDCARLOS= str_replace('رفع منشئ ','',$text);
+$CARLOSID = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDCARLOS"))->result->username;
+$CARLOSNAME = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDCARLOS"))->result->first_name;
 bot('SendMessage',['chat_id'=>$chat_id,
-'text'=>"⋄︙العضو ⋙「 [$LEGRNAME](tg://user?id=$IDLEGR) 」 
+'text'=>"⋄︙العضو ⋙「 [$CARLOSNAME](tg://user?id=$IDCARLOS) 」 
 ⋄︙هوه بالفعل منشئ 
 ",
 'parse_mode'=>'markdown','reply_to_message_id'=>$message->message_id,'disable_web_page_preview'=>true,
 ]);
 }
 
-$IDLEGR = str_replace('تنزيل منشئ ','',$text);
-if ($text =="تنزيل منشئ $IDLEGR" and preg_match('/([0-9])/i',$IDLEGR) and in_array($IDLEGR,$LEGR)){
-$IDLEGR= str_replace('تنزيل منشئ ','',$text);
-$LEGRID = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDLEGR"))->result->username;
-$LEGRNAME = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDLEGR"))->result->first_name;
-	$IDLEGR_info = file_get_contents("data/LEGR/$chat_id.txt");
-	$mdrs = file_get_contents("data/LEGR/$chat_id/crlo.txt");
+$IDCARLOS = str_replace('تنزيل منشئ ','',$text);
+if ($text =="تنزيل منشئ $IDCARLOS" and preg_match('/([0-9])/i',$IDCARLOS) and in_array($IDCARLOS,$carlos)){
+$IDCARLOS= str_replace('تنزيل منشئ ','',$text);
+$CARLOSID = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDCARLOS"))->result->username;
+$CARLOSNAME = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDCARLOS"))->result->first_name;
+	$IDCARLOS_info = file_get_contents("data/carlos/$chat_id.txt");
+	$mdrs = file_get_contents("data/carlos/$chat_id/crlo.txt");
 	$mdrs1 = explode("             \n",$mdrs);
-	$str = str_replace($IDLEGR,"",$IDLEGR_info);
-	$str2 = str_replace(" *𓆩* [" . "@". $LEGRID ."] *𓆪* " . "»" . " *𓆩* `". $IDLEGR ."` *𓆪* ","",$mdrs1);
-	file_put_contents("data/LEGR/$chat_id.txt",$str);
-	file_put_contents("data/LEGR/$chat_id/crlo.txt",$str2);
+	$str = str_replace($IDCARLOS,"",$IDCARLOS_info);
+	$str2 = str_replace(" *𓆩* [" . "@". $CARLOSID ."] *𓆪* " . "»" . " *𓆩* `". $IDCARLOS ."` *𓆪* ","",$mdrs1);
+	file_put_contents("data/carlos/$chat_id.txt",$str);
+	file_put_contents("data/carlos/$chat_id/crlo.txt",$str2);
 	bot('SendMessage',['chat_id'=>$chat_id,
-    'text'=>"⋄︙العضو ⋙「 [$LEGRNAME](tg://user?id=$IDLEGR) 」 
+    'text'=>"⋄︙العضو ⋙「 [$CARLOSNAME](tg://user?id=$IDCARLOS) 」 
 ⋄︙تم تنزيله من قائمة المنشئين
 ",
 'parse_mode'=>'markdown','reply_to_message_id'=>$message->message_id,'disable_web_page_preview'=>true,
 ]);
 }
-$IDLEGR = str_replace('تنزيل منشئ ','',$text);
-if ($text =="تنزيل منشئ $IDLEGR" and preg_match('/([0-9])/i',$IDLEGR) and !in_array($IDLEGR,$LEGR)){
-$IDLEGR= str_replace('تنزيل منشئ ','',$text);
-$LEGRID = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDLEGR"))->result->username;
-$LEGRNAME = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDLEGR"))->result->first_name;
+$IDCARLOS = str_replace('تنزيل منشئ ','',$text);
+if ($text =="تنزيل منشئ $IDCARLOS" and preg_match('/([0-9])/i',$IDCARLOS) and !in_array($IDCARLOS,$carlos)){
+$IDCARLOS= str_replace('تنزيل منشئ ','',$text);
+$CARLOSID = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDCARLOS"))->result->username;
+$CARLOSNAME = json_decode(file_get_contents("http://api.telegram.org/bot$tk/getChat?chat_id=$IDCARLOS"))->result->first_name;
 bot('SendMessage',['chat_id'=>$chat_id,
-'text'=>"⋄︙العضو ⋙「 [$LEGRNAME](tg://user?id=$IDLEGR) 」 
+'text'=>"⋄︙العضو ⋙「 [$CARLOSNAME](tg://user?id=$IDCARLOS) 」 
 ⋄︙ ليس منشئ ليتم تنزيله 
 ",'parse_mode'=>'markdown','reply_to_message_id'=>$message->message_id,'disable_web_page_preview'=>true,
 ]);
 }
 if($text == "مسح المنشيئن" ){
-file_put_contents("data/LEGR/$chat_id.txt","");
-file_put_contents("data/LEGR/$chat_id.txt","");
-file_put_contents("data/LEGR/$chat_id/crlo.txt" ,"");
+file_put_contents("data/carlos/$chat_id.txt","");
+file_put_contents("data/carlos/$chat_id.txt","");
+file_put_contents("data/carlos/$chat_id/crlo.txt" ,"");
 bot('SendMessage',['chat_id'=>$chat_id,
 'text'=>"⋄︙عزيزي ⋙「 [$first_name](tg://user?id=$from_id) 」 
 ⋄︙ تم مسح قائمة المنشئين
@@ -1279,14 +1269,14 @@ bot('SendMessage',['chat_id'=>$chat_id,
 ]);
 }
 
-if($re and $text == "تنزيل المنشئ" || $text == "تنزيل منشئ"  and in_array($re_id,$LEGR)){
-	$re_id_info = file_get_contents("data/LEGR/$chat_id.txt");
-	$mdrs = file_get_contents("data/LEGR/$chat_id/crlo.txt");
+if($re and $text == "تنزيل المنشئ" || $text == "تنزيل منشئ"  and in_array($re_id,$carlos)){
+	$re_id_info = file_get_contents("data/carlos/$chat_id.txt");
+	$mdrs = file_get_contents("data/carlos/$chat_id/crlo.txt");
 	$mdrs1 = explode("             \n",$mdrs);
 	$str = str_replace($re_id,"",$re_id_info);
 	$str2 = str_replace(" *𓆩* [" . "@". $re_user ."] *𓆪* " . "»" . " *𓆩* `". $re_id ."` *𓆪* ","",$mdrs1);
-	file_put_contents("data/LEGR/$chat_id.txt",$str);
-	file_put_contents("data/LEGR/$chat_id/crlo.txt",$str2);
+	file_put_contents("data/carlos/$chat_id.txt",$str);
+	file_put_contents("data/carlos/$chat_id/crlo.txt",$str2);
 	bot('SendMessage',['chat_id'=>$chat_id,
     'text'=>"
 ⋄︙ العضو ⋙「 [$re_name](tg://user?id=$re_id) 」 
@@ -1295,7 +1285,7 @@ if($re and $text == "تنزيل المنشئ" || $text == "تنزيل منشئ" 
 'parse_mode'=>'markdown','reply_to_message_id'=>$message->message_id,'disable_web_page_preview'=>true,
 ]);
 }
-if($re and $text == "تنزيل المنشئ" || $text == "تنزيل منشئ" || $text == "ت م" || $text == "تنم" and !in_array($re_id,$LEGR)){
+if($re and $text == "تنزيل المنشئ" || $text == "تنزيل منشئ" || $text == "ت م" || $text == "تنم" and !in_array($re_id,$carlos)){
 bot('SendMessage',['chat_id'=>$chat_id,
 'text'=>"
 ⋄︙ العضو ⋙「 [$re_name](tg://user?id=$re_id) 」 
@@ -1303,13 +1293,13 @@ bot('SendMessage',['chat_id'=>$chat_id,
 ",'parse_mode'=>'markdown','reply_to_message_id'=>$message->message_id,'disable_web_page_preview'=>true,
 ]);
 }
-if($text == "المنشئين" || $text == "قائمه المنشئين" and $LEGRs_info != NULL and $LEGRs_info != " "){
+if($text == "المنشئين" || $text == "قائمه المنشئين" and $carloss_info != NULL and $carloss_info != " "){
 bot('SendMessage',['chat_id'=>$chat_id,
 'text'=>"⋄︙اليك قائمة ⋙ المشئينن
-$LEGRs_infos\n",'parse_mode'=>'markdown','reply_to_message_id'=>$message->message_id,'disable_web_page_preview'=>true,
+$carloss_infos\n",'parse_mode'=>'markdown','reply_to_message_id'=>$message->message_id,'disable_web_page_preview'=>true,
 ]);
 }
-if($text == "المنشيئن" ||  $text == "قائمه المنشيئن" and $LEGRs_info == NULL || $LEGRs_info == " " || $LEGRs_info == ""){
+if($text == "المنشيئن" ||  $text == "قائمه المنشيئن" and $carloss_info == NULL || $carloss_info == " " || $carloss_info == ""){
 bot('SendMessage',['chat_id'=>$chat_id,
 'text'=>"⋄︙عزيزي ⋙「 [$first_name](tg://user?id=$from_id) 」 
 ⋄︙لايوجد منشئ حاليأ
@@ -1318,7 +1308,7 @@ bot('SendMessage',['chat_id'=>$chat_id,
 }
 }
 
-if($status == "creator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$LEGR) || in_array($from_id,$eri)  || in_array($from_id,$nazar)) {
+if($status == "creator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$carlos) || in_array($from_id,$eri)  || in_array($from_id,$nazar)) {
 if($rt && $text == "رفع مدير" or $rt && $text == "مد" and $text==$settings["information"]["modir"] and !in_array($re_id,$manger)){
 	if($settings["lock"]["rfaabot"] == "مقفول"){
 			file_put_contents("data/manger/$chat_id.txt",$re_id . "\n" , FILE_APPEND);
@@ -1460,7 +1450,7 @@ bot('SendMessage',['chat_id'=>$chat_id,
 }
 }
 
-if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$AUBEHAB) || in_array($from_id,$LEGR) || in_array($from_id,$eri) || in_array($from_id,$nazar)) {
+if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$AUBEHAB) || in_array($from_id,$carlos) || in_array($from_id,$eri) || in_array($from_id,$nazar)) {
 if($rt && $text == "رفع ادمن" or $rt && $text == "اد" and $text==$settings["information"]["admi"]  and !in_array($re_id,$admin_user)){
 	if($settings["lock"]["rfaabot"] == "مقفول"){
 			file_put_contents("data/admin_user/$chat_id.txt",$re_id . "\n" , FILE_APPEND);
@@ -1611,7 +1601,7 @@ bot('SendMessage',['chat_id'=>$chat_id,
 }
 }
 
-if($status == "creator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$AUBEHAB) || in_array($from_id,$admin_user) || in_array($from_id,$manger) or in_array($from_id,$LEGR) or in_array($from_id,$eri) || in_array($from_id,$nazar)) {
+if($status == "creator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$AUBEHAB) || in_array($from_id,$admin_user) || in_array($from_id,$manger) or in_array($from_id,$carlos) or in_array($from_id,$eri) || in_array($from_id,$nazar)) {
 if($rt && $text == "رفع مميز" or $rt && $text == "م" and $text==$settings["information"]["mmaz"] and !in_array($re_id,$mmyaz)){
 	if($settings["lock"]["rfaabot"] == "مقفول"){
 			file_put_contents("data/mmyaz/$chat_id.txt",$re_id . "\n" , FILE_APPEND);
@@ -1754,13 +1744,13 @@ $re_id_info = file_get_contents("data/nazar/$chat_id.txt");
 	$str2 = str_replace(" *𓆩* [" . "@". $re_user ."] *𓆪* " . "»" . " *𓆩* `". $re_id ."` *𓆪* ","",$mdrs1);
 	file_put_contents("data/nazar/$chat_id.txt",$str);
 	file_put_contents("data/nazar/$chat_id/nazr.txt",$str2);
-	$re_id_info = file_get_contents("data/LEGR/$chat_id.txt");
-	$mdrs = file_get_contents("data/LEGR/$chat_id/crlo.txt");
+	$re_id_info = file_get_contents("data/carlos/$chat_id.txt");
+	$mdrs = file_get_contents("data/carlos/$chat_id/crlo.txt");
 	$mdrs1 = explode("             \n",$mdrs);
 	$str = str_replace($re_id,"",$re_id_info);
 	$str2 = str_replace(" *𓆩* [" . "@". $re_user ."] *𓆪* " . "»" . " *𓆩* `". $re_id ."` *𓆪* ","",$mdrs1);
-	file_put_contents("data/LEGR/$chat_id.txt",$str);
-	file_put_contents("data/LEGR/$chat_id/crlo.txt",$str2);
+	file_put_contents("data/carlos/$chat_id.txt",$str);
+	file_put_contents("data/carlos/$chat_id/crlo.txt",$str2);
 	$re_id_info = file_get_contents("data/manger/$chat_id.txt");
 	$mdrs = file_get_contents("data/manger/$chat_id/mange.txt");
 	$mdrs1 = explode("             \n",$mdrs);
@@ -1793,13 +1783,13 @@ bot('SendMessage',['chat_id'=>$chat_id,
 }
 if($rt && $text == "تنزيل الكل" or $rt && $text == "تنزيل من كل الرتب" and $text==$settings["information"]["tkal"]){
 if(in_array($from_id,$nazar)) {
-	$re_id_info = file_get_contents("data/LEGR/$chat_id.txt");
-	$mdrs = file_get_contents("data/LEGR/$chat_id/crlo.txt");
+	$re_id_info = file_get_contents("data/carlos/$chat_id.txt");
+	$mdrs = file_get_contents("data/carlos/$chat_id/crlo.txt");
 	$mdrs1 = explode("             \n",$mdrs);
 	$str = str_replace($re_id,"",$re_id_info);
 	$str2 = str_replace(" *𓆩* [" . "@". $re_user ."] *𓆪* " . "»" . " *𓆩* `". $re_id ."` *𓆪* ","",$mdrs1);
-	file_put_contents("data/LEGR/$chat_id.txt",$str);
-	file_put_contents("data/LEGR/$chat_id/crlo.txt",$str2);
+	file_put_contents("data/carlos/$chat_id.txt",$str);
+	file_put_contents("data/carlos/$chat_id/crlo.txt",$str2);
 	$re_id_info = file_get_contents("data/manger/$chat_id.txt");
 	$mdrs = file_get_contents("data/manger/$chat_id/mange.txt");
 	$mdrs1 = explode("             \n",$mdrs);
@@ -1831,7 +1821,7 @@ bot('SendMessage',['chat_id'=>$chat_id,
 }
 }
 if($rt && $text == "تنزيل الكل" or $rt && $text == "تنزيل من كل الرتب" and $text==$settings["information"]["tkal"]){
-if(in_array($from_id,$LEGR)) {
+if(in_array($from_id,$carlos)) {
 	$re_id_info = file_get_contents("data/manger/$chat_id.txt");
 	$mdrs = file_get_contents("data/manger/$chat_id/mange.txt");
 	$mdrs1 = explode("             \n",$mdrs);
@@ -1888,7 +1878,7 @@ bot('SendMessage',['chat_id'=>$chat_id,
 }
 }
 
-if($status == "creator" and in_array($from_id,$Dev) and in_array($from_id,$eri) and in_array($from_id,$LEGR) and in_array($from_id,$nazar)){
+if($status == "creator" and in_array($from_id,$Dev) and in_array($from_id,$eri) and in_array($from_id,$carlos) and in_array($from_id,$nazar)){
 if($text == "مسح المرفوعين" or $text == "مسح الكل"){
 $CMM = count($mmyazs)-1;
 $CM = count($mangers)-1;
@@ -1922,44 +1912,44 @@ file_put_contents("data/admin_user/$chat_id/mange.txt","");
 if ($settings["lock"]["tagg"] == "مقفول"){
 if (strstr($text ,"#") == true or strstr($caption,"#") == true) {
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',['chat_id'=>$chat_id,'message_id'=>$message_id]);}}}}
 #link
 $link = file_get_contents('link.json');
 if($link == "✔"){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 if (strstr($text,"t.me") == true or strstr($text,"telegram.me") == true or strstr($text,"https://") == true or strstr($text,"://") == true or strstr($text,"wWw.") == true or strstr($text,"WwW.") == true or strstr($text,"T.me/") == true or strstr($text,"WWW.") == true or strstr($caption,"t.me") == true or strstr($caption,"telegram.me")) {   
 bot('deletemessage',['chat_id'=>$chat_id,'message_id'=>$message_id,]);}}}
 #photo
 if($settings["lock"]["photo"] == "مقفول"){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 if ($update->message->photo){  
 bot('deletemessage',['chat_id'=>$chat_id,'message_id'=>$message_id]);}}}
 # inline
 $inline = json_decode(file_get_contents('php://input'),true);
 if($settings["lock"]["inline"] == "مقفول"){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 if(isset($inline['message']['reply_markup']['inline_keyboard'][0][0]['text'])){
 bot('deleteMessage',['chat_id'=>$message->chat->id,'message_id'=>$message->message_id]);}}}
 #gif
 if($settings["lock"]["gif"] == "مقفول"){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 if ($update->message->document){  
 bot('deletemessage',['chat_id'=>$chat_id,'message_id'=>$message_id]);}}}
 # document
 if($settings["lock"]["document"] == "مقفول"){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 if ($update->message->document){  
 bot('deletemessage',['chat_id'=>$chat_id,'message_id'=>$message_id]);}}}
 # video
 if($settings["lock"]["video"] == "مقفول"){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 if ($update->message->video){  
 bot('deletemessage',['chat_id'=>$chat_id,'message_id'=>$message_id]);}}}
 # ar
 $abn = (strstr($text,"ض") == true or strstr($text,"ص") == true or  strstr($text,"ق") == true or strstr($text,"ف") == true or  strstr($text,"غ") == true or strstr($text,"ع") == true or  strstr($text,"ه") == true or  strstr($text,"خ") == true or strstr($text,"ح") == true or  strstr($text,"ج") == true or  strstr($text,"ش") == true or  strstr($text,"س") == true or  strstr($text,"ي") == true or strstr($text,"ب") == true or  strstr($text,"ل") == true or strstr($text,"ا") == true or  strstr($text,"ت") == true or  strstr($text,"ن") == true or strstr($text,"م") == true or  strstr($text,"ك") == true or  strstr($text,"ظ") == true or  strstr($text,"ط") == true or strstr($text,"ذ") == true or  strstr($text,"د") == true or strstr($text,"ز") == true or  strstr($text,"ر") == true or  strstr($text,"و") == true or strstr($text,"ة") == true or  strstr($text,"ث") == true or  strstr($text,"ؤ") == true or  strstr($text,"ء") == true or  strstr($text,"ى") == true or strstr($text,"ئ") == true or  strstr($text,"آ") == true or strstr($text,"إ") == true or  strstr($text,"أ") == true);
 if($abn && $settings["lock"]["ar"]=="مقفول"){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
 'chat_id'=>$chat_id,
 'message_id'=>$message_id
@@ -1968,7 +1958,7 @@ bot('deletemessage',[
 # xnxx
 $xnxx = (strstr($text,"كس") == true or strstr($text,"كسخت") == true or  strstr($text,"عير") == true or strstr($text,"بعضرك") == true or  strstr($text,"بن كحبه") == true or strstr($text,"كحبه") == true or  strstr($text,"قحبه") == true or  strstr($text,"شرفك") == true or strstr($text,"بناموسك") == true or  strstr($text,"ج") == true or  strstr($text,"سكسي") == true or  strstr($text,"بلاعة") == true or  strstr($text,"بلاعه") == true);
 if($xnxx && $settings["lock"]["xnxx"]=="مقفول"){
-if ($status !=  creator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
 'chat_id'=>$chat_id,
 'message_id'=>$message_id
@@ -1978,12 +1968,12 @@ bot('deletemessage',[
 if ($settings["lock"]["en"] == "مقفول"){
 if (strstr($text,"q") == true  or strstr($text,"w") == true or strstr($text,"e") == true  or  strstr($text,"r") == true   or strstr($text,"t") == true or  strstr($text,"y") == true  or strstr($text,"u") == true or strstr($text,"i") == true  or  strstr($text,"o") == true   or strstr($text,"p") == true or strstr($text,"a") == true  or strstr($text,"s") == true or strstr($text,"d") == true  or  strstr($text,"f") == true   or strstr($text,"g") == true or  strstr($text,"h") == true  or strstr($text,"j") == true or strstr($text,"k") == true  or  strstr($text,"l") == true   or strstr($text,"z") == true or strstr($text,"x") == true or strstr($text,"c") == true  or  strstr($text,"v") == true   or strstr($text,"b") == true or  strstr($text,"n") == true  or strstr($text,"m") == true or strstr($text,"Q") == true  or  strstr($text,"X") == true   or strstr($text,"C") == true or strstr($text,"F") == true  or strstr($text,"G") == true or strstr($text,"H") == true  or  strstr($text,"A") == true   or strstr($text,"L") == true or  strstr($text,"O") == true  or strstr($text,"P") == true ) {
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',['chat_id'=>$chat_id,'message_id'=>$message_id]);}}}}
 #fr
 $abn = (strstr($text,"کیری") == true or strstr($text,"خوبی") == true or strstr($text,"چون") == true or  strstr($text,"پسر") == true or strstr($text,"کوس") == true or  strstr($text,"کیر") == true or  strstr($text,"گور") == true or strstr($text,"بی ناموس") == true or  strstr($text,"پ") == true or  strstr($text,"دخترا") == true or  strstr($text,"کونی") == true or  strstr($text,"کسکش") == true or strstr($text,"ژ") == true or  strstr($text,"چ") == true or strstr($text,"ک") == true or  strstr($text,"گ") == true);
 if($abn && $settings["lock"]["fr"]=="مقفول"){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
 'chat_id'=>$chat_id,
 'message_id'=>$message_id
@@ -1991,14 +1981,14 @@ bot('deletemessage',[
 }}
 # edit 
 if($editgetsettings["lock"]["edit"] == "مقفول"){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 if ($update->edited_message->text){  
 bot('deletemessage',['chat_id'=>$chat_edit_id,'message_id'=>$message_edit_id]);}}}
 # contact
 if ($settings["lock"]["contact"] == "مقفول"){
 if($update->message->contact){
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',['chat_id'=>$chat_id,'message_id'=>$message_id]);}}}}
 # edit media
 $edit_media  = $update->edited_message->message_id;
@@ -2011,7 +2001,7 @@ $document_media = $update->edited_message->document;
 $audio_media = $update->edited_message->audio;
 $location_media = $update->edited_message->location;
 if ($editgetsettings["lock"]["editmd"] == "مقفول"){
-if ( $you != 'creator' && $you != 'administrator' && $edit_for_id != $Dev && $edit_for_id != $manger && $edit_for_id != $admin_user && $edit_for_id != $developer && $edit_for_id != $LEGR && $edit_for_id != $eri && $edit_for_id != $nazar){
+if ( $you != 'creator' && $you != 'administrator' && $edit_for_id != $Dev && $edit_for_id != $manger && $edit_for_id != $admin_user && $edit_for_id != $developer && $edit_for_id != $carlos && $edit_for_id != $eri && $edit_for_id != $nazar){
 if(edit_medias || $photo_media || $document_media || $video_media || $voice_media || $audio_media || $location_media || preg_match('/^(.*)([Hh]ttp|[Hh]ttps|t.me)(.*)|([Hh]ttp|[Hh]ttps|t.me)(.*)|(.*)([Hh]ttp|[Hh]ttps|t.me)|(.*)[Tt]elegram.me(.*)|[Tt]elegram.me(.*)|(.*)[Tt]elegram.me|(.*)[Tt].me(.*)|[Tt].me(.*)|(.*)[Tt].me/',$edit_medias) ){
 bot('deleteMessage',['chat_id'=>$edit_chat_id_media,'message_id'=>$edit_media,]);}}}
 
@@ -2019,7 +2009,7 @@ bot('deleteMessage',['chat_id'=>$edit_chat_id_media,'message_id'=>$edit_media,])
 if ($settings["lock"]["username"] == "مقفول"){
 if (strstr($text ,"@") == true or  strstr($caption,"@") == true) {
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
 'chat_id'=>$chat_id,
 'message_id'=>$message_id
@@ -2029,7 +2019,7 @@ bot('deletemessage',[
 if ($settings["lock"]["audio"] == "مقفول"){
 if($update->message->audio){
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
 'chat_id'=>$chat_id,
 'message_id'=>$message_id
@@ -2039,7 +2029,7 @@ bot('deletemessage',[
 if ($settings["lock"]["voice"] == "مقفول"){
 if($update->message->voice){
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
 'chat_id'=>$chat_id,
 'message_id'=>$message_id
@@ -2048,14 +2038,14 @@ bot('deletemessage',[
 if ($settings["lock"]["markdown"] == "مقفول"){
 if($update->message->entities){
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
 'chat_id'=>$chat_id,
 'message_id'=>$message_id
 ]);
 }}}}
 if($settings["lock"]["bot"] == "مقفول"){
-	if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+	if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 if ($message->new_chat_member->is_bot) {
 $hardmodebot = $settings["information"]["hardmodebot"];
 if($hardmodebot == "مقفول"){
@@ -2079,13 +2069,13 @@ bot('kickChatMember',[
 if ($settings["lock"]["sticker"] == "مقفول"){
 if($update->message->sticker){
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',['chat_id'=>$chat_id,'message_id'=>$message_id]);}}}}
 ######
 if ($settings["lock"]["is_sticker"] == "مقفول"){
 if($update->message->sticker->is_sticker){
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
 'chat_id'=>$chat_id,
 'message_id'=>$message_id
@@ -2105,8 +2095,8 @@ file_put_contents("data/$chat_id/spam/spamxe.txt",$spamx);
 file_put_contents("data/$chat_id/spam/tim.txt",$as); 
 var_dump(bot('sendMessage',[ 
 'chat_id' => $chat_id,
-'text' =>"⌔ تم وضع التكرار 
-⌔ العدد في المجموعه ⋙ {$spamx}
+'text' =>"✵⁞ تم وضع التكرار 
+✵⁞ العدد في المجموعه ⋙ {$spamx}
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 'reply_to_message_id' => $message->message_id,
 ]));
@@ -2121,7 +2111,7 @@ file_put_contents("data/$chat_id/spam/$from_id/$timex.txt",$timex_spam);
 $tkrar = file_get_contents("data/$chat_id/spam/$from_id/$timex.txt");
 $nomtkrar = file_get_contents("data/$chat_id/spam/spamxe.txt");
 if($settings["lock"]["spam"] == "مقفول️"){
-	if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+	if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 if($tkrar >=$nomtkrar) {
 var_dump(bot('restrictChatMember',[
 'user_id'=>$from_id,   
@@ -2129,11 +2119,11 @@ var_dump(bot('restrictChatMember',[
 'can_post_messages'=>false,
 'until_date'=>time()+$weplus*1600,
 ]));
-bot('sendMessage',[ 'chat_id'=>$chat_id, 'text'=>"⌔ عزيزي - [$first_name](tg://user?id=$from_id)\n⌔ تم تقيدك بسبب تكرار ",'parse_mode'=>"markdown",
+bot('sendMessage',[ 'chat_id'=>$chat_id, 'text'=>"✵⁞ عزيزي - [$first_name](tg://user?id=$from_id)\n✵⁞ تم تقيدك بسبب تكرار ",'parse_mode'=>"markdown",
 ]);}}}
 //botk
 if($settings["lock"]["botk"] == "مقفول️"){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 if ($message->new_chat_member->is_bot) {
  bot('kickChatMember',[
  'chat_id'=>$chat_id,
@@ -2146,7 +2136,7 @@ if ($message->new_chat_member->is_bot) {
 if ($settings["lock"]["forward"] == "مقفول"){
 if($update->message->forward_from | $update->message->forward_from_chat){
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
 'chat_id'=>$chat_id,
 'message_id'=>$message->message_id
@@ -2155,7 +2145,7 @@ bot('deletemessage',[
 // muteall
 if ($settings["lock"]["mute_all"] == "مقفول"){
 if($update->message){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
 'chat_id'=>$chat_id,
 'message_id'=>$message->message_id
@@ -2167,7 +2157,7 @@ bot('deletemessage',[
 if ($settings["lock"]["reply"] == "مقفول"){
 if($update->message->reply_to_message){
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
  'chat_id'=>$chat_id,
  'message_id'=>$message->message_id
@@ -2180,7 +2170,7 @@ bot('deletemessage',[
 if ($settings["lock"]["tgservic"] == "مقفول"){
 if($update->message->new_chat_member | $update->message->new_chat_photo | $update->message->new_chat_title | $update->message->left_chat_member | $update->message->pinned_message){
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
  bot('deletemessage',[
  'chat_id'=>$chat_id,
  'message_id'=>$message->message_id
@@ -2193,7 +2183,7 @@ if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$De
 if ($settings["lock"]["text"] == "مقفول"){
 if($update->message->text){
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
  'chat_id'=>$chat_id,
  'message_id'=>$message->message_id
@@ -2206,7 +2196,7 @@ bot('deletemessage',[
 if ($settings["lock"]["video_msg"] == "مقفول"){
 if($update->message->video_note){
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev)  && !in_array($from_id,$mmyaz) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
  'chat_id'=>$chat_id,
  'message_id'=>$message->message_id
@@ -2232,7 +2222,7 @@ file_put_contents("data/$chat_id.json",$settings);
 if($settings["lock"]["game"] == "مقفول"){
 if($update->message->game){
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
  'chat_id'=>$chat_id,
  'message_id'=>$message_id
@@ -2245,7 +2235,7 @@ bot('deletemessage',[
 if ($settings["lock"]["location"] == "مقفول"){
 if($update->message->location){
 if ($tc == 'group' | $tc == 'supergroup'){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 bot('deletemessage',[
  'chat_id'=>$chat_id,
  'message_id'=>$message_id
@@ -2264,20 +2254,20 @@ return true;
 }
 //linkk
 if($settings["lock"]["linkk"] == "مقفول"){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 if (strstr($text,"t.me") == true or strstr($text,"telegram.me") == true or strstr($text,"https://") == true or strstr($text,"://") == true or strstr($text,"wWw.") == true or strstr($text,"WwW.") == true or strstr($text,"T.me/") == true or strstr($text,"WWW.") == true or strstr($caption,"t.me") == true or strstr($caption,"telegram.me")) {   
 bot('deletemessage',['chat_id'=>$chat_id,'message_id'=>$message_id,]);
 bot('kickChatMember',['user_id'=>$from_id,'chat_id'=>$chat_id,]);
 bot('sendmessage',['chat_id'=>$chat_id,'text'=>"🗣┇عزيزي - [$first_name](tg://user?id=$from_id)\n💢️┇ممنوع نشر روابط هون تم طردك",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,]);}}}
 //linkw
 if($settings["lock"]["linkw"] == "مقفول"){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$LEGR) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$developer) && !in_array($from_id,$carlos) && !in_array($from_id,$eri) && !in_array($from_id,$nazar)){
 if (strstr($text,"t.me") == true or strstr($text,"telegram.me") == true or strstr($text,"https://") == true or strstr($text,"://") == true or strstr($text,"wWw.") == true or strstr($text,"WwW.") == true or strstr($text,"T.me/") == true or strstr($text,"WWW.") == true or strstr($text,"https://") == true or strstr($caption,"t.me") == true or strstr($caption,"telegram.me")) {   
 bot('deletemessage',['chat_id'=>$chat_id,'message_id'=>$message_id,]);
 bot('sendmessage',['chat_id'=>$chat_id,'text'=>"🗣┇عزيزي - [$first_name](tg://user?id=$from_id)\n💢️┇ممنوع نشر روابط هون ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,]);}}}
 
 if($text =="قفل الروابط" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2304,7 +2294,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الروابط" or $text =="فتح روابط"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2330,7 +2320,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="قفل التكرار"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2357,7 +2347,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح التكرار"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2394,7 +2384,7 @@ if ($add == true) {
         $next_date = date('h:i:s', strtotime($date2 ."+$num Minutes"));
 			  bot('sendmessage',[
             'chat_id'=>$chat_id,
-            'text'=>"⌔ اهلا عزيزي ،  👨‍✈️•
+            'text'=>"✵⁞ اهلا عزيزي ،  👨‍✈️•
 ⌯⁞ تم قفل الدردشة لمدة $num دقيقة ، ✅ •
 
 ⌯⁞ الوقت الان ، $date1 🕑 •
@@ -2453,7 +2443,7 @@ file_put_contents("data/$chat_id.json",$settings);
 }
 }
 if($text =="قفل الرد" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2480,7 +2470,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الرد" or $text =="فتح رد"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2506,7 +2496,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="قفل الفارسيه" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2534,7 +2524,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الفارسيه" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2560,7 +2550,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="قفل الفشار" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2588,7 +2578,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الفشار" ){
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2614,7 +2604,7 @@ bot('sendmessage',[
 }
 }
 if($text =="قفل الروابط بالطرد" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2641,7 +2631,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الروابط بالطرد" or $text =="فتح روابط بالطرد"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2667,12 +2657,12 @@ bot('sendmessage',[
 }
 }
 if($text =="قفل الروابط بالتحذير" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الروابط
 ⌯⁞ خاصية ⋙ التحذير
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -2694,7 +2684,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الروابط بالتحذير" or $text =="فتح روابط بالتحذير"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR)  or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos)  or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2720,12 +2710,12 @@ bot('sendmessage',[
 }
 }
 if($text =="قفل الانلاين" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الاونلاين
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -2747,7 +2737,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الانلاين" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2773,12 +2763,12 @@ bot('sendmessage',[
 }
 }
 if($text =="قفل الانكليزيه" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الانكليزيه
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -2800,7 +2790,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الانكليزيه" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2826,12 +2816,12 @@ bot('sendmessage',[
 }
 }
 if($text =="قفل البوتات بالطرد" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل البوتات
 ⌯⁞ خاصية ⋙ بالطرد
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -2853,7 +2843,7 @@ bot('sendmessage',[
 }
 }
 if($text =="فتح البوتات بالطرد" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2880,12 +2870,12 @@ bot('sendmessage',[
 }
 // lock photo
 elseif($text =="قفل الصور" or $text =="قفل صور"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الصور
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -2907,7 +2897,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الصور" or $text =="فتح صور"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2934,12 +2924,12 @@ bot('sendmessage',[
 }
 }
 elseif($text =="قفل الملصقات المتحركة" or $text =="قفل الملصقات المتحركه"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل ملصقات المتحركه
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -2961,7 +2951,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الملصقات المتحركة" or $text =="فتح الملصقات المتحركه"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -2989,12 +2979,12 @@ bot('sendmessage',[
 }
 // gif
 elseif($text =="قفل المتحركة" or $text =="قفل المتحركه"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل المتحركه
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3017,7 +3007,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح المتحركة" or $text =="فتح المتحركه"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3043,12 +3033,12 @@ bot('sendmessage',[
 }
 }
 elseif($text =="قفل الماركدوان" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الماركدوان
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3071,7 +3061,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الماركدوان" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3097,12 +3087,12 @@ bot('sendmessage',[
 }
 }
 elseif($text =="قفل العربيه" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل العربيه
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3125,7 +3115,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح العربيه" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3152,12 +3142,12 @@ bot('sendmessage',[
 }
 // document
 elseif($text =="قفل الملفات" or $text =="قفل ملفات،"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الملفات
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3180,7 +3170,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الملفات" or $text =="فتح ملفات"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3208,12 +3198,12 @@ bot('sendmessage',[
 }
 // video
 elseif($text =="قفل الفيديو" or $text =="قفل فيديو"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الفيديو
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3236,7 +3226,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الفيديو" or $text =="فتح فيديو"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3264,12 +3254,12 @@ bot('sendmessage',[
 }
 // edit
 elseif($text =="قفل التعديل" or $text =="قفل تعديل"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل التعديل
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3292,7 +3282,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح التعديل" or $text =="فتح تعديل"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3320,12 +3310,12 @@ bot('sendmessage',[
 }
 // game
 elseif($text =="قفل الالعاب" or $text =="قفل العاب"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الالعاب
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3348,7 +3338,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الالعاب" or $text =="فتح العاب"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3376,12 +3366,12 @@ bot('sendmessage',[
 }
 // location
 elseif($text =="قفل المواقع" or $text =="قفل الموقع"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل المواقع
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3404,7 +3394,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح المواقع" or $text =="فتح الموقع"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3432,12 +3422,12 @@ bot('sendmessage',[
 }
 // contact
 elseif($text =="قفل الجهات" or $text =="قفل جهات"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الجهات
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3460,7 +3450,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الجهات" or $text =="فتح جهات"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3487,12 +3477,12 @@ bot('sendmessage',[
 }
 }
 elseif($text =="قفل تعديل الميديا" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل التعديل الميديا
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3515,7 +3505,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح تعديل الميديا" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3543,12 +3533,12 @@ bot('sendmessage',[
 }
 // tag
 elseif($text =="قفل التاك" or $text =="قفل الهاش تاك"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل التاك
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3571,7 +3561,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح التاك" or $text =="فتح الهاش تاك"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3599,12 +3589,12 @@ bot('sendmessage',[
 }
 // username 
 elseif($text =="قفل المعرفات" or $text =="قفل المعرف"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل المعرفات
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3627,7 +3617,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح المعرفات" or $text =="فتح المعرف"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3655,12 +3645,12 @@ bot('sendmessage',[
 }
 // audio
 elseif($text =="قفل الصوت" or $text =="قفل الموسيقى"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الصوت
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3683,7 +3673,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الصوت" or $text =="فتح صوت"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3710,12 +3700,12 @@ bot('sendmessage',[
 }
 }
 elseif($text =="قفل الاشعارات" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الاشعارات
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3738,7 +3728,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الاشعارات" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3766,12 +3756,12 @@ bot('sendmessage',[
 }
 // video note
 elseif($text =="قفل بصمة الفيديو" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل بصمة الفيديو
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3794,7 +3784,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح بصمة الفيديو" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3822,12 +3812,12 @@ bot('sendmessage',[
 }
 // lock bots
 elseif ($text== "قفل البوتات" or $text== "قفل بوتات" or $text== "قفل البوت") {
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل البوتات
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3850,7 +3840,7 @@ bot('sendmessage',[
 }
 }
 elseif ($text== "فتح البوتات" or $text== "فتح بوتات"or $text== "فتح البوت") {
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3877,12 +3867,12 @@ bot('sendmessage',[
 }
 }
 if($text =="قفل البصمات" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل البصمات
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3905,7 +3895,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح البصمات" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3932,12 +3922,12 @@ bot('sendmessage',[
 }
 }
 if($text =="قفل الاباحي" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الباحي
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -3960,7 +3950,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الاباحي" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -3988,12 +3978,12 @@ bot('sendmessage',[
 }
 // sticker
 elseif($text =="قفل الملصقات" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الملصقات
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -4016,7 +4006,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الملصقات" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4044,12 +4034,12 @@ bot('sendmessage',[
 }
 // forward
 elseif($text =="قفل التوجيه"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل التوجيه
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -4072,7 +4062,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح التوجيه" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4100,12 +4090,12 @@ bot('sendmessage',[
 }
 // fosh
 elseif($text =="قفل السيئات" or $text =="قفل سيئات"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل السيئات
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -4128,7 +4118,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح السيئات" or $text =="فتح سيئات"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4155,12 +4145,12 @@ bot('sendmessage',[
 }
 }
 elseif($text =="قفل الممنوعات" or $text =="قفل ممنوعات"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الممنوعات
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -4183,7 +4173,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="فتح الممنوعات" or $text =="فتح ممنوعات"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4210,14 +4200,14 @@ bot('sendmessage',[
 }
 }
 elseif( $text =="قفل الكلايش"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 $pluscharacter = $settings["information"]["pluscharacter"];
 $downcharacter = $settings["information"]["downcharacter"];
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الكلايش
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -4240,7 +4230,7 @@ bot('sendmessage',[
 }
 }
 elseif( $text =="فتح الكلايش"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4267,12 +4257,12 @@ bot('sendmessage',[
 }
 }
 if( $text =="قفل الدردشه"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم قفـل الدردشه
 ⌯⁞ خاصية ⋙ المسح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
@@ -4295,7 +4285,7 @@ bot('sendmessage',[
 }
 }
 elseif( $text =="فتح الدردشه"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4322,12 +4312,12 @@ bot('sendmessage',[
 }
 }
 if( $text =="تفعيل المنادات" or $text == "تفعيل نادي"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم تفعيل المنادات
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 'reply_to_message_id'=>$message_id,
@@ -4349,7 +4339,7 @@ bot('sendmessage',[
 }
 }
 elseif( $text =="تعطيل المنادات" or $text == "تفعيل نادي"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4376,13 +4366,13 @@ bot('sendmessage',[
 }
 }
 elseif($text =="قفل تحويل الصيغ" or $text =="قفل الصيغ"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"*
-⌔ تم قفل تحويل الصيغ  
-⌔ بواسطة *[$first_name](tg://user?id=$from_id) 
+✵⁞ تم قفل تحويل الصيغ  
+✵⁞ بواسطة *[$first_name](tg://user?id=$from_id) 
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 'reply_to_message_id'=>$message_id,
 'reply_markup'=>$inlinebutton,
@@ -4401,7 +4391,7 @@ bot('sendmessage',[
  ]);
 }}}
 elseif($text =="فتح تحويل الصيغ" or $text =="فتح الصيغ"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4426,13 +4416,13 @@ bot('sendmessage',[
  ]);
 }}}
 elseif($text =="قفل تحميل الفديو" or $text =="قفل تحميل الميديا" or $text == "قفل التحميل"){
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"*
-⌔ تم قفل تحميل الميديا  
-⌔ بواسطة* [$first_name](tg://user?id=$from_id) 
+✵⁞ تم قفل تحميل الميديا  
+✵⁞ بواسطة* [$first_name](tg://user?id=$from_id) 
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 'reply_to_message_id'=>$message_id,
 'reply_markup'=>$inlinebutton,
@@ -4451,7 +4441,7 @@ bot('sendmessage',[
  ]);
 }}}
 elseif($text =="فتح تحميل الفديو" or $text =="فتح تحميل الميديا" or $text == "فتح التحميل"){
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4477,7 +4467,7 @@ bot('sendmessage',[
 }}}
 
 elseif( $text =="تعطيل الايدي" or $text == "تعطيل الايدي بالصوره" or $text == "تعط"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4504,7 +4494,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="تفعيل الايدي" or $text == "تفعيل الايدي بالصوره" or $text == "تفع"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR)  or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos)  or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4531,7 +4521,7 @@ bot('sendmessage',[
 }
 }
 if ( $text =="تفعيل ردود البوت" or $text == "تفعيل ردود بوت"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4558,7 +4548,7 @@ bot('sendmessage',[
 }
 }
 if ( $text =="تعطيل ردود البوت" or $text == "تعطيل ردود بوت"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4585,7 +4575,7 @@ bot('sendmessage',[
 }
 }
 if($text =="تفعيل ردود المدير" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4612,7 +4602,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="تعطيل ردود المدير" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4639,7 +4629,7 @@ bot('sendmessage',[
 }
 }
 if ( $text =="تفعيل كشف الحب" or $text == "تفعيل نبسة الحب"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4666,7 +4656,7 @@ bot('sendmessage',[
 }
 }
 if ( $text =="تعطيل كشف الحب" or $text == "تعطيل نسبة الحب"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4693,7 +4683,7 @@ bot('sendmessage',[
 }
 }
 elseif( $text =="تعطيل اطردني" or $text == "تعطيل امر اطردني"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4720,12 +4710,12 @@ bot('sendmessage',[
 }
 }
 elseif($text =="تفعيل اطردني" or $text == "تفعيل امر اطردني"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ بواسطه ⋙ [$first_name](tg://user?id=$from_id)
 ⌯⁞ تم تفعيل اطردني
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 'reply_to_message_id'=>$message_id,
@@ -4748,7 +4738,7 @@ bot('sendmessage',[
 }
 
 elseif($rt && $text== "حذف"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) { bot('deletemessage',[
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) { bot('deletemessage',[
  'chat_id'=>$chat_id,
  'message_id'=>$re_msgid
  ]);
@@ -4760,7 +4750,7 @@ if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$De
 }
 // rmsg
 elseif ( strpos($text, '/rmsg') !== false or strpos($text, 'تنظيف') !== false) {
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$num = str_replace(['/rmsg ','تنظيف'],'',$text );
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$num = str_replace(['/rmsg ','تنظيف'],'',$text );
 if ($num <= 300 && $num >= 1){
 $add = $settings["information"]["added"];
 if ($add == true) {
@@ -4803,7 +4793,7 @@ bot('sendmessage',[
 }
 //setname
 elseif (strpos($text, 'ضع اسم') !== false) {
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$AUBEHAB) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {$newname= str_replace(['ضع اسم '],'',$text );
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$AUBEHAB) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {$newname= str_replace(['ضع اسم '],'',$text );
  bot('setChatTitle',[
  'chat_id'=>$chat_id,
  'title'=>$newname
@@ -4821,7 +4811,7 @@ bot('sendmessage',[
 }
 
 if ($text =="تفعيل القوانين" ){
-if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$AUBEHAB) || in_array($from_id,$developer) || in_array($from_id,$LEGR) || in_array($from_id,$eri) || in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$AUBEHAB) || in_array($from_id,$developer) || in_array($from_id,$carlos) || in_array($from_id,$eri) || in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {	
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -4847,7 +4837,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="تعطيل القوانين" ){
-if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$AUBEHAB) || in_array($from_id,$developer) || in_array($from_id,$LEGR) || in_array($from_id,$eri) || in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$AUBEHAB) || in_array($from_id,$developer) || in_array($from_id,$carlos) || in_array($from_id,$eri) || in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -4875,7 +4865,7 @@ bot('sendmessage',[
 }
 
 elseif($text =="تفعيل الرابط" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4902,7 +4892,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="تعطيل الرابط" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4929,7 +4919,7 @@ bot('sendmessage',[
 }
 }
 $armofaddurl = $settings["information"]["addurl"];
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$LEGR) or in_array($from_id,$nazar)){
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$carlos) or in_array($from_id,$nazar)){
 if($text == "تعيين الرابط" or $text == "تعيين الرابط" or $text =="ضع رابط" or $text == "وضع رابط"){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -4943,7 +4933,7 @@ $settings = json_encode($settings,true);
 file_put_contents("data/$chat_id.json",$settings);
 }}
 if($text and $settings["addkaddurl"] == $from_id){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$LEGR) or in_array($from_id,$nazar)){
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$carlos) or in_array($from_id,$nazar)){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
@@ -4958,7 +4948,7 @@ $settings = json_encode($settings,true);
 file_put_contents("data/$chat_id.json",$settings);
 }}
 elseif($text == "حذف الرابط" or $text == "مسح الرابط"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$LEGR) or in_array($from_id,$nazar)){
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$carlos) or in_array($from_id,$nazar)){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"⋄︙بواسطه ← [$first_name](tg://user?id=$from_id)
@@ -5125,15 +5115,15 @@ bot('sendMessage',[
  		        bot('sendmessage',[
             'chat_id'=>$Dev[0],
             'text'=>"
-⌔ تم تفعيل مجموعه جديده
+✵⁞ تم تفعيل مجموعه جديده
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⌔ اسم المجموعه - $namegroup
-⌔ ايدي المجموعه - $chat_id
-⌔ رابط المجموعه - [اضغط هنا]($link)
-⌔ عدد المجموعه - $MEMH
+✵⁞ اسم المجموعه - $namegroup
+✵⁞ ايدي المجموعه - $chat_id
+✵⁞ رابط المجموعه - [اضغط هنا]($link)
+✵⁞ عدد المجموعه - $MEMH
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⌔ بواسطة - [$first_name](tg://user?id=$from_id)
-⌔ ايديه - $from_id
+✵⁞ بواسطة - [$first_name](tg://user?id=$from_id)
+✵⁞ ايديه - $from_id
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
         ]); 
 $dateadd = date('Y-m-d', time());
@@ -5267,7 +5257,7 @@ $dataadd = $settings["information"]["dataadded"];
 bot('sendMessage',[
         	'chat_id'=>$chat_id,
         	'text'=>"
-⌔ المجموعه بالتأكيد مفعله
+✵⁞ المجموعه بالتأكيد مفعله
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
   'reply_to_message_id'=>$message_id,
      ]); 
@@ -5304,15 +5294,15 @@ bot('sendMessage',[
  		        bot('sendmessage',[
             'chat_id'=>$Dev[0],
             'text'=>"
-⌔ تم تفعيل مجموعه جديده
+✵⁞ تم تفعيل مجموعه جديده
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⌔ اسم المجموعه - $namegroup
-⌔ ايدي المجموعه - $chat_id
-⌔ رابط المجموعه - [اضغط هنا]($link)
-⌔ عدد المجموعه - $MEMH
+✵⁞ اسم المجموعه - $namegroup
+✵⁞ ايدي المجموعه - $chat_id
+✵⁞ رابط المجموعه - [اضغط هنا]($link)
+✵⁞ عدد المجموعه - $MEMH
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⌔ بواسطة - [$first_name](tg://user?id=$from_id)
-⌔ ايديه - $from_id
+✵⁞ بواسطة - [$first_name](tg://user?id=$from_id)
+✵⁞ ايديه - $from_id
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
         ]); 
 $dateadd = date('Y-m-d', time());
@@ -5438,7 +5428,7 @@ $dataadd = $settings["information"]["dataadded"];
 bot('sendMessage',[
         	'chat_id'=>$chat_id,
         	'text'=>"
-⌔ المجموعه بالتأكيد مفعله
+✵⁞ المجموعه بالتأكيد مفعله
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
   'reply_to_message_id'=>$message_id,
      ]); 
@@ -5460,9 +5450,9 @@ if ($add != true) {
 bot('sendMessage',[
         	'chat_id'=>$chat_id,
         	'text'=>"
-⌔ عذرأ عزيزي 
-⌔ عدد المجموعه قليل 
-⌔ العدد المطلوب - $kocke
+✵⁞ عذرأ عزيزي 
+✵⁞ عدد المجموعه قليل 
+✵⁞ العدد المطلوب - $kocke
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 'reply_to_message_id'=>$message_id,
 		
@@ -5478,9 +5468,9 @@ if(!in_array($from_id,$Dev)){
 bot('sendMessage',[
         	'chat_id'=>$chat_id,
         	'text'=>"
-⌔ البوت للمطور فقط 
-⌔ لتفعيل البوت قم بمراسلة المطور
-⌔ المطور - $DevUser",
+✵⁞ البوت للمطور فقط 
+✵⁞ لتفعيل البوت قم بمراسلة المطور
+✵⁞ المطور - $DevUser",
 ]);
 }
 }
@@ -5513,15 +5503,15 @@ bot('sendMessage',[
  		        bot('sendmessage',[
             'chat_id'=>$Dev[0],
             'text'=>"
-⌔ تم تفعيل مجموعه جديده
+✵⁞ تم تفعيل مجموعه جديده
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⌔ اسم المجموعه - $namegroup
-⌔ ايدي المجموعه - $chat_id
-⌔ رابط المجموعه - [اضغط هنا]($link)
-⌔ عدد المجموعه - $MEMH
+✵⁞ اسم المجموعه - $namegroup
+✵⁞ ايدي المجموعه - $chat_id
+✵⁞ رابط المجموعه - [اضغط هنا]($link)
+✵⁞ عدد المجموعه - $MEMH
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⌔ بواسطة - [$first_name](tg://user?id=$from_id)
-⌔ ايديه - $from_id
+✵⁞ بواسطة - [$first_name](tg://user?id=$from_id)
+✵⁞ ايديه - $from_id
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
         ]); 
 $dateadd = date('Y-m-d', time());
@@ -5650,7 +5640,7 @@ $dataadd = $settings["information"]["dataadded"];
 bot('sendMessage',[
         	'chat_id'=>$chat_id,
         	'text'=>"
-⌔ المجموعه بالتأكيد مفعله
+✵⁞ المجموعه بالتأكيد مفعله
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
   'reply_to_message_id'=>$message_id,
      ]); 
@@ -5696,7 +5686,7 @@ unlink("data/$chat_id.json");
 }
 }
 elseif($text== "قفل الكل"or $text== "automatic" or $text== "قفل كل") {
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$LEGR) or in_array($from_id,$nazar)) {if ($tc == 'group' | $tc == 'supergroup'){
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$carlos) or in_array($from_id,$nazar)) {if ($tc == 'group' | $tc == 'supergroup'){
 $add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendMessage',[
@@ -5754,7 +5744,7 @@ bot('sendmessage',[
  ]);
 }}}}
 elseif($text =="unmute all" or $text =="فتح الكل"){
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$LEGR) or in_array($from_id,$nazar)) {
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$carlos) or in_array($from_id,$nazar)) {
 $add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
@@ -5904,7 +5894,7 @@ bot('sendmessage',[
 }
 }
 if( $text== "تفعيل الحمايه" or $text== "تفعيل حمايه") {
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$LEGR) or in_array($from_id,$nazar)) {if ($tc == 'group' | $tc == 'supergroup'){
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$carlos) or in_array($from_id,$nazar)) {if ($tc == 'group' | $tc == 'supergroup'){
 $add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendMessage',[
@@ -5936,7 +5926,7 @@ bot('sendmessage',[
  ]);
 }}}}
 if( $text== "تعطيل الحمايه" or $text== "تعطيل حمايه") {
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$LEGR) or in_array($from_id,$nazar)) {if ($tc == 'group' | $tc == 'supergroup'){
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$eri) or in_array($from_id,$carlos) or in_array($from_id,$nazar)) {if ($tc == 'group' | $tc == 'supergroup'){
 $add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendMessage',[
@@ -5971,7 +5961,7 @@ $HAMD = file_get_contents("data/tiger.json");
 $HHAMDD = file_get_contents("data/hhamdd.json");
 if($text=="ضع ترحيب" or $text == "ضع الترحيب" or $text == "وضع ترحيب" or $text == "وضع الترحيب"){
 file_put_contents("data/hhamdd.json","$from_id");
-if ($status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ($status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
@@ -5988,10 +5978,10 @@ bot('sendmessage',[
 'reply_to_message_id'=>$message->message_id,
 'parse_mode'=>"MarkDown",
 ]);
-file_put_contents("data/tiger.json","LEGR");
+file_put_contents("data/tiger.json","CARLOS");
 }}
-if($text and $HAMD =="LEGR" and $HHAMDD == $from_id){
-if ($status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if($text and $HAMD =="CARLOS" and $HHAMDD == $from_id){
+if ($status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
@@ -6010,7 +6000,7 @@ $Useeer = "لايوجد يوزر";
 $Useeer = "@$username";
 }
 if($text=="الترحيب"){
-if ($status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ($status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
  $times = date('h:i:s');
  $crlos = file_get_contents("data/tiiger.json");
  $text = str_replace(["gpname","username","time"],["$namegroup","@$newmemberuser","$date | $date2"],"$crlos");
@@ -6025,7 +6015,7 @@ bot('sendmessage',[
 'text'=>"$text",'reply_to_message_id'=>$message->message_id,'parse_mode'=>"MarkDown",]);}}
 // welcome enbale and disable
 elseif($text== "تفعيل الترحيب" or $text == "فتح الترحيب") {
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 $text = $settings["information"]["textwelcome"];
 bot('sendmessage',[
@@ -6051,7 +6041,7 @@ bot('sendmessage',[
  ]);
 }}}
 elseif($text== "تعطيل الترحيب" or $text == "قفل الترحيب") {
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -6099,7 +6089,7 @@ bot('sendmessage',[
 }
 }}
 if($text=="حذف ترحيب" or $text == "حذف الترحيب" or $text == "مسح ترحيب" or $text == "مسح الترحيب"){
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
@@ -6113,7 +6103,7 @@ file_put_contents("data/tiiger.json","");
 }
 $crlos = file_get_contents("data/tiiger.json");
 if($text=="الترحيب" and $crlos == null){
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
@@ -6127,7 +6117,7 @@ $EHB = file_get_contents("data/ehb.json");
 $EHBB = file_get_contents("data/ehbb.json");
 if($text=="ضع التوديع"){
 	file_put_contents("data/ehbb.json","$from_id");
-if ($status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ($status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
@@ -6147,7 +6137,7 @@ bot('sendmessage',[
 file_put_contents("data/ehb.json","ehab");
 }}
 if($text and $EHB =="ehab" and $EHBB == $from_id){
-if ($status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ($status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
@@ -6161,7 +6151,7 @@ file_put_contents("data/eehb.json","$text");
 unlink("data/ehb.json");
 }}
 if($text=="التوديع"){
-if ($status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ($status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
  $times = date('h:i:s');
  $karlos = file_get_contents("data/eehb.json");
  $text = str_replace(["gpname","username","time"],["$namegroup","@$newmemberuser","$date | $date2"],"$karlos");
@@ -6176,7 +6166,7 @@ bot('sendmessage',[
 'text'=>"$text",'reply_to_message_id'=>$message->message_id,'parse_mode'=>"MarkDown",]);}}
 // welcome enbale and disable
 elseif($text== "تفعيل التوديع" or $text == "فتح التوديع") {
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -6201,7 +6191,7 @@ bot('sendmessage',[
  ]);
 }}}
 elseif($text== "تعطيل التوديع" or $text == "قفل التوديع") {
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -6250,7 +6240,7 @@ bot('sendmessage',[
 }
 }}
 if($text=="مسح التوديع"){
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
@@ -6264,7 +6254,7 @@ file_put_contents("data/eehb.json","");
 }
 $karlos = file_get_contents("data/eehb.json");
 if($text=="التوديع" and $karlos == null){
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
@@ -6276,7 +6266,7 @@ bot('sendmessage',[
 }}
 
 if ($text =="تفعيل الطرد" ){
-if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$LEGR) || in_array($from_id,$AUBEHAB) || in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$carlos) || in_array($from_id,$AUBEHAB) || in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {	
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -6302,7 +6292,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="تعطيل الطرد" ){
-if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$LEGR) || in_array($from_id,$AUBEHAB) || in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$carlos) || in_array($from_id,$AUBEHAB) || in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -6329,7 +6319,7 @@ bot('sendmessage',[
 }
 }
 if ($text =="تفعيل الحظر" ){
-if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$LEGR) || in_array($from_id,$AUBEHAB) || in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$carlos) || in_array($from_id,$AUBEHAB) || in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {	
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -6355,7 +6345,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="تعطيل الحظر" ){
-if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$LEGR) || in_array($from_id,$AUBEHAB) || in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$carlos) || in_array($from_id,$AUBEHAB) || in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -6383,8 +6373,8 @@ bot('sendmessage',[
 }
 if ( $rt && $text == "طرد" or $text == "اطرد" and $text==$settings["information"]["kout"] ){
 if ($settings["lock"]["katei"] =="مقفول"){
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
-if ( $statusrt != 'creator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$mmyaz) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$LEGR) && !in_array($re_id,$nazar) && !in_array($re_id,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
+if ( $statusrt != 'creator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$mmyaz) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$carlos) && !in_array($re_id,$nazar) && !in_array($re_id,$eri)) {
 bot('kickChatMember',[
 'chat_id'=>$chat_id,
 'user_id'=>$re_id
@@ -6417,8 +6407,8 @@ if ($settings["lock"]["katei"] =="مقفول"){
 $kickuser= str_replace('طرد ','',$text);
 $kickinfo = json_decode(file_get_contents("https://api.telegram.org/bot$token/getChat?chat_id=$kickuser"));
 $kickname =$kickinfo->result->first_name;
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
-if ( $statusrt != 'creator' && !in_array($kickuser,$Dev) && !in_array($kickuser,$manger) && !in_array($kickuser,$mmyaz) && !in_array($kickuser,$admin_user) && !in_array($kickuser,$mmyaz) && !in_array($kickuser,$developer) && !in_array($kickuser,$LEGR) && !in_array($kickuser,$nazar) && !in_array($kickuser,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
+if ( $statusrt != 'creator' && !in_array($kickuser,$Dev) && !in_array($kickuser,$manger) && !in_array($kickuser,$mmyaz) && !in_array($kickuser,$admin_user) && !in_array($kickuser,$mmyaz) && !in_array($kickuser,$developer) && !in_array($kickuser,$carlos) && !in_array($kickuser,$nazar) && !in_array($kickuser,$eri)) {
 bot('kickChatMember',[
 'chat_id'=>$chat_id,
 'user_id'=>$re_id
@@ -6443,7 +6433,7 @@ bot('sendmessage',[
 }
 }
 }
-elseif($status == "creator" || $status == "administrator" or in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$admin_user) || in_array($from_id,$manger) || in_array($from_id,$nazar) || in_array($from_id,$LEGR) || in_array($from_id,$eri)) {
+elseif($status == "creator" || $status == "administrator" or in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$admin_user) || in_array($from_id,$manger) || in_array($from_id,$nazar) || in_array($from_id,$carlos) || in_array($from_id,$eri)) {
 if($text == "المجموعه" or $text == "معلومات المجموعه" or $text == "معلومات المجموعة"){
 $mem = bot('getchatmemberscount',['chat_id'=>$chat_id])->result;
 $cmg = file_get_contents("data/count/$chat_id.txt");
@@ -6531,7 +6521,7 @@ $infor = "مبرمج السورس";
 elseif(in_array($re_id,$nazar) ){
 $infor = "منشئ اساسي";
 }
-elseif(in_array($re_id,$LEGR) ){
+elseif(in_array($re_id,$carlos) ){
 $infor = "المنشئ";
 }
 elseif(in_array($re_id,$Dev) ){
@@ -6564,7 +6554,7 @@ $re_s = "لايوجد يوزر";
 }elseif($username){
 $re_s = "@$re_user";
 }
-$ch = "@P_P_9_P";
+$ch = "@QO8_Q";
 $reid_info = $settings["info_idr"]["frid_g"];
 if($rt and $text == "كشف" || $text == "ايديه"){
 $reid_info = $settings["info_idr"]["frid_g"];
@@ -6572,10 +6562,10 @@ $reid_info = $settings["info_idr"]["frid_g"];
 bot('sendMessage', [
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ الاسم - $re_name
-⌔ الرتبة - $infor
-⌔ المعرف - $re_s
-⌔ الايدي - $re_id
+✵⁞ الاسم - $re_name
+✵⁞ الرتبة - $infor
+✵⁞ المعرف - $re_s
+✵⁞ الايدي - $re_id
 ",'disable_web_page_preview'=>true,
 'reply_to_message_id'=>$message_id,
 ]);
@@ -6655,9 +6645,9 @@ bot("sendMessage",["chat_id"=>$chat_id,'text'=>"⋄︙ قم بأرسال اسم 
 
 if(in_array($from_id,$Dev)){
 if ($text == "⋄ حذف الاسم" or $text == "مسح اسم البوت"){
-file_put_contents("data/namebot.txt","ليجر");
+file_put_contents("data/namebot.txt","نيزك");
 bot("sendMessage",["chat_id"=>$chat_id,'text'=>"⋄︙ تم مسح اسم البوت",'parse_mode'=>"MARKDOWN",'reply_to_message_id'=>$message_id,]);}}
-# --     Source LEGR     --
+# --     Source carlos     --
 if($text && $setnamebot =="setnamebot" and in_array($from_id,$Dev)){
 file_put_contents("data/namebot.txt",$text); 
 file_put_contents("data/set.txt","");
@@ -6668,9 +6658,9 @@ bot("sendmessage",["chat_id"=>$chat_id,"text" => "
 
 $botproxre = array(
 "لك نته لبوت",
-"ياخي ورب اسمي ليجر",
-"حبي فدوه لصيح بوت اسمي ليجر",
-"اسمي ليجر حياتي"
+"ياخي ورب اسمي نيزك",
+"حبي فدوه لصيح بوت اسمي نيزك",
+"اسمي نيزك حياتي"
 );
 $reproxbot = array_rand($botproxre, 1);
 if($text == "بوت" || $text == "البوت شنو اسمه" || $text == "شسمه البوت" || $text == "البوت شسمه" || $text == "اسم البوت" and $namebot == NULL){
@@ -6700,9 +6690,9 @@ if($text == "$namebot" and $namebot != NULL){
 if ($tc == 'group' | $tc == 'supergroup'){
 bot('sendMessage',['chat_id'=>$chat_id, 'text'=>$namere[$rename],'parse_mode'=>"MARKDOWN",'reply_to_message_id'=>$message_id,]);}}
 
-$abuehab = array("هلا قلبي معاك ليجر","تفضل حبيبي انا ليجر🌝💞","يمك حياتي امرني 🥺💞","شتريد كل شويه ليجر","يابه نجب كل شويه ليجر خبصتنه");
+$abuehab = array("هلا قلبي معاك نيزك","تفضل حبيبي انا نيزك🌝💞","يمك حياتي امرني 🥺💞","شتريد كل شويه نيزك","يابه نجب كل شويه نيزك خبصتنه");
 $ehab = array_rand($proxre, 1);
-if($text == "ليجر" and $namebot == NULL){
+if($text == "نيزك" and $namebot == NULL){
 if ($tc == 'group' | $tc == 'supergroup'){
 bot('sendMessage',['chat_id'=>$chat_id, 'text'=>$abuehab[$ehab],'parse_mode'=>"MARKDOWN",'reply_to_message_id'=>$message_id,]);}}
 
@@ -6710,7 +6700,7 @@ $saiko = file_get_contents("data/saikoo.txt");
 $ccarllos = file_get_contents("data/ccarllos.json");
 if($text=="ضع قوانين"){
 file_put_contents("data/ccarllos.json","$from_id");
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
@@ -6730,12 +6720,12 @@ file_put_contents("data/saikoo.txt","saiko");
 }
 }
 if($text and $saiko =="saiko" and $ccarllos == $from_id){
-	if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+	if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
 ⋄︙ اهلا بك عزيزي
-⋄︙ تم حفض القوانين بنجاح
+⋄︙ تم حفظ القوانين بنجاح
 ⋄︙ الان قم بارسال القوانين لعرض القوانين
 ",
 'reply_to_message_id'=>$message->message_id,
@@ -6772,7 +6762,7 @@ bot('sendmessage',[
 }
 }
 if($text=="مسح القوانين"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
@@ -6857,7 +6847,7 @@ $inf = "مبرمج السورس";
 elseif(in_array($BANID,$nazar) ){
 $inf = "منشئ اساسي";
 }
-elseif(in_array($BANID,$LEGR) ){
+elseif(in_array($BANID,$carlos) ){
 $inf = "المنشئ";
 }
 elseif(in_array($BANID,$Dev) ){
@@ -6893,8 +6883,8 @@ $NAMEID =$SABRENLOVE->result->first_name;
 if ($text =="حظر $BANID" and preg_match('/([0-9])/i',$BANID)){
 	if ($settings["lock"]["banuser"] =="مقفول"){
 $BANID= str_replace('حظر ','',$text);
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {
-if ( $REMAS2 != 'creator' && $REMAS2 != 'administrator' && !in_array($BANID,$Dev) && !in_array($BANID,$manger) && !in_array($BANID,$admin_user) && !in_array($BANID,$mmyaz) && !in_array($BANID,$developer) && !in_array($BANID,$nazar) && !in_array($BANID,$LEGR) && !in_array($BANID,$eri) && !in_array($BANID,$AUBEHAB)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {
+if ( $REMAS2 != 'creator' && $REMAS2 != 'administrator' && !in_array($BANID,$Dev) && !in_array($BANID,$manger) && !in_array($BANID,$admin_user) && !in_array($BANID,$mmyaz) && !in_array($BANID,$developer) && !in_array($BANID,$nazar) && !in_array($BANID,$carlos) && !in_array($BANID,$eri) && !in_array($BANID,$AUBEHAB)) {
 	bot('KickChatMember',[
     'chat_id'=>$chat_id,
     'user_id'=>$REMAS
@@ -6924,8 +6914,8 @@ else
 if ($text =="الغاء حظر $BANID" and preg_match('/([0-9])/i',$BANID)){
 	if ($settings["lock"]["banuser"] =="مقفول"){
 $BANID= str_replace('الغاء حظر ','',$text);
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {
-if ( $REMAS2 != 'creator' && $REMAS2 != 'administrator' && !in_array($BANID,$Dev) && !in_array($BANID,$manger) && !in_array($BANID,$admin_user) && !in_array($BANID,$mmyaz) && !in_array($BANID,$developer) && !in_array($BANID,$nazar) && !in_array($BANID,$LEGR) && !in_array($BANID,$eri) && !in_array($BANID,$AUBEHAB)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {
+if ( $REMAS2 != 'creator' && $REMAS2 != 'administrator' && !in_array($BANID,$Dev) && !in_array($BANID,$manger) && !in_array($BANID,$admin_user) && !in_array($BANID,$mmyaz) && !in_array($BANID,$developer) && !in_array($BANID,$nazar) && !in_array($BANID,$carlos) && !in_array($BANID,$eri) && !in_array($BANID,$AUBEHAB)) {
 	bot('unbanChatMember',[
     'chat_id'=>$chat_id,
     'user_id'=>$REMAS
@@ -6954,8 +6944,8 @@ else
  }
  if($rt && $text == "حظر" or $rt && $text == "احظر" and $text==$settings["information"]["kik"] ){
  	if ($settings["lock"]["banuser"] =="مقفول"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {
-if ( $statusrt != 'creator' && $statusrt != 'administrator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$nazar) && !in_array($re_id,$LEGR) && !in_array($re_id,$eri) && !in_array($re_id,$AUBEHAB)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {
+if ( $statusrt != 'creator' && $statusrt != 'administrator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$nazar) && !in_array($re_id,$carlos) && !in_array($re_id,$eri) && !in_array($re_id,$AUBEHAB)) {
 	bot('KickChatMember',[
     'chat_id'=>$chat_id,
     'user_id'=>$re_id
@@ -6984,8 +6974,8 @@ else
  }
  if($rt && $text == "الغاء الحظر" or $rt && $text == "الغاء حظر"){
  	if ($settings["lock"]["banuser"] =="مقفول"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {
-if ( $statusrt != 'creator' && $statusrt != 'administrator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$nazar) && !in_array($re_id,$LEGR) && !in_array($re_id,$eri) && !in_array($re_id,$AUBEHAB)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri)) {
+if ( $statusrt != 'creator' && $statusrt != 'administrator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$nazar) && !in_array($re_id,$carlos) && !in_array($re_id,$eri) && !in_array($re_id,$AUBEHAB)) {
 	bot('unbanChatMember',[
     'chat_id'=>$chat_id,
     'user_id'=>$re_id
@@ -7013,7 +7003,7 @@ else
  }
 }
 if($text == "مسح المحظورين"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$AUBEHAB) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$AUBEHAB) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 file_put_contents("banduser/$chat_id.txt","");
 bot("SendMessage",[
 'chat_id'=>$chat_id,
@@ -7050,7 +7040,7 @@ bot("SendMessage",[
  
 if($text == "تفعيل الاشتراك الاجباري"){
 if ($tc == 'group' | $tc == 'supergroup'){  
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 $add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendMessage',['chat_id'=>$chat_id,'text'=>"⋄︙بواسطة - [$first_name](tg://user?id=$from_id)
@@ -7063,7 +7053,7 @@ file_put_contents("data/$chat_id/$chat_id.json",$settings);
 else{bot('sendmessage',['chat_id'=>$chat_id,'text'=>"⋄︙البوت ليس مفعل قم بتفعيل البوت",'reply_to_message_id'=>$message_id,'reply_markup'=>$inlinebutton,]);}}}}
 elseif($text == "تعطيل الاشتراك الاجباري"){
 if ($tc == 'group' | $tc == 'supergroup'){  
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 $add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendMessage',['chat_id'=>$chat_id,'text'=>"⋄︙بواسطة - [$first_name](tg://user?id=$from_id)
@@ -7075,7 +7065,7 @@ file_put_contents("data/$chat_id/$chat_id.json",$settings);
 }
 else{bot('sendmessage',['chat_id'=>$chat_id,'text'=>"⋄︙البوت ليس مفعل قم بتفعيل البوت",'reply_to_message_id'=>$message_id,'reply_markup'=>$inlinebutton,]);}}}}
 elseif(strpos($text  , 'وضع قناة') !== false or strpos($text  , 'اضف قناة') !== false or strpos($text  , 'ضع قناة') !== false) {
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 $add = $settings["information"]["added"];
 if ($add == true) {
 $code = $num = str_replace(['وضع قناة ','اضف قناة','ضع قناة'],'',$text );
@@ -7090,7 +7080,7 @@ file_put_contents("data/$chat_id/$chat_id.json",$settings);
 else{bot('sendmessage',['chat_id'=>$chat_id,'text'=>"⋄︙البوت ليس مفعل قم بتفعيل البوت",'reply_to_message_id'=>$message_id,'reply_markup'=>$inlinebutton,]);}}}  
 
 if($settings["information"]["lockchannel"] == "مقفول"){
-if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$mmyaz) && !in_array($from_id,$developer) && !in_array($from_id,$eri) && !in_array($from_id,$nazar) && !in_array($from_id,$LEGR) ){
+if ($status !=  creator  && $status !=  administrator  && !in_array($from_id,$Dev) && !in_array($from_id,$manger) && !in_array($from_id,$admin_user) && !in_array($from_id,$mmyaz) && !in_array($from_id,$developer) && !in_array($from_id,$eri) && !in_array($from_id,$nazar) && !in_array($from_id,$carlos) ){
 if ($tc == 'group' | $tc == 'supergroup'){
 $usernamechannel = $settings["information"]["setchannel"];
 $forchannel = json_decode(file_get_contents("https://api.telegram.org/bot".$token."/getChatMember?chat_id=".$usernamechannel."&user_id=".$from_id));
@@ -7119,7 +7109,7 @@ file_put_contents("data/$chat_id/$chat_id.json",$settings);
 else { bot('deletemessage',[ 'chat_id'=>$chat_id, 'message_id'=>$message_id ]); } } } } }
 
 if($settings["information"]["step"] == "setchannel"){
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 if ($tc == 'group' | $tc == 'supergroup'){
 if(strpos($text  , '@') !== false) {
 $plus = mb_strlen("$text ");
@@ -7174,7 +7164,7 @@ $sttings['ameer'][$chat_id][] = "$oo";
 $sttings["media"][$chat_id]+=1;
 file_put_contents("data/media.json",json_encode($sttings));
 }
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$AUBEHAB) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$AUBEHAB) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 if($text == "عدد الميديا"){
 bot('sendMessage',[
 'chat_id'=>$chat_id,
@@ -7187,7 +7177,7 @@ bot('sendMessage',[
 exit();
 }
 }
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$AUBEHAB) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$AUBEHAB) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 if($text == "مسح الميديا"){
 if($media == "0"){
 bot('sendMessage',[
@@ -7203,7 +7193,7 @@ exit();
 }
 }
 date_default_timezone_set("Asia/Baghdad");
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)) {
 if($text == "مسح الميديا"){
 bot('sendMessage',[
 'chat_id'=>$chat_id,
@@ -7286,7 +7276,7 @@ bot('EditMessageText',[
 unlink("Ali/$chat_id2/$Dataid.txt");
 }}
 elseif( $text =="فتح التحقق"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
  bot('sendmessage',[
  'chat_id'=>$chat_id,
@@ -7312,7 +7302,7 @@ bot('sendmessage',[
 }
 }
 if( $text =="قفل التحقق"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
  bot('sendmessage',[
  'chat_id'=>$chat_id,
@@ -7352,7 +7342,7 @@ $mustafa = '{"lock": {"put": "مفتوح"}}';
 $mustafa = json_decode($mustafa,true);
 file_put_contents("data/$chat_id.json",$mustafa);
 }
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 if ($text == "قفل الدخول" ) {
 bot('sendMessage',[
      'chat_id'=>$chat_id,
@@ -7366,7 +7356,7 @@ $mustafa["lock"]["put"]="مقفول️";
 file_put_contents("data/$chat_id.json",json_encode($mustafa,true));
 }
 }
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 if ($text == "فتح الدخول"  ) {
 bot('sendMessage',[
      'chat_id'=>$chat_id,
@@ -7425,7 +7415,7 @@ bot("sendMessage",["chat_id"=>$chat_id,"text"=>"⋄︙عزيزي - $info
 }
 
 if($text =="تفعيل ردود المطور" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -7452,7 +7442,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="تعطيل ردود المطور" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -7482,7 +7472,7 @@ bot('sendmessage',[
 mkdir("data");
 @$settings = json_decode(file_get_contents("data/$chat_id.json"),true);
 if($text =="اضف رد" or $text == "اظف رد"){
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)){
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"⋄︙*حسننا , الان ارسل كلمه الرد ✓*
@@ -7646,7 +7636,7 @@ bot('sendsticker',[
 ]);
 }}
 elseif($text =="الردود" or $text == "قائمة الردود"){
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)){
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)){
 if($settings["setraddArmof"]!=null){
 $a = $settings["setraddArmof"];
 for($i =0;$i<count($a)-1;$i++){
@@ -7669,7 +7659,7 @@ bot('sendmessage',[
 ]);
 }}}
 if($text == "مسح الردود"){
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)){
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"*⋄︙ تم مسح كل الردود  ✓*",
@@ -7687,7 +7677,7 @@ $settings = json_encode($settings,true);
 file_put_contents("data/$chat_id.json",$settings);
 }}
 if($text == "مسح رد" or $text == "حذف رد"){
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)){
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"*⋄︙الان ارسل الرد لمسحه من المجموعه*"
@@ -7698,7 +7688,7 @@ $settings = json_encode($settings,true);
 file_put_contents("data/$chat_id.json",$settings);
 }}
 if($text && $settings["addradArmof"] =="$from_id.dell"){
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$LEGR) or in_array($from_id,$eri)){
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$nazar) or in_array($from_id,$carlos) or in_array($from_id,$eri)){
 if(in_array($text,$settings["setraddArmof"])){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -8018,12 +8008,12 @@ file_put_contents("kdevelopers.txt","");
 
 if($text =="⋄ تعطيل الاشتراك"){
 if (in_array($from_id,$Dev)){
-bot('sendmessage',['chat_id'=>$chat_id,'text'=>"⌔ تم تعطيل الاشتراك الاجباري",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,'reply_to_message_id'=>$message_id,]);
+bot('sendmessage',['chat_id'=>$chat_id,'text'=>"✵⁞ تم تعطيل الاشتراك الاجباري",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,'reply_to_message_id'=>$message_id,]);
 file_put_contents("data/setchannel.json","معطل ✖️");}}
 
 if($text =="⋄ تفعيل الاشتراك"){
 if (in_array($from_id,$Dev)){
-bot('sendmessage',['chat_id'=>$chat_id,'text'=>"⌔ تم تفعيل الاشتراك الاجباري",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,'reply_to_message_id'=>$message_id,]);
+bot('sendmessage',['chat_id'=>$chat_id,'text'=>"✵⁞ تم تفعيل الاشتراك الاجباري",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,'reply_to_message_id'=>$message_id,]);
 file_put_contents("data/setchannel.json","مفعل ✔️");}}
 $chat_id2 = $update->callback_query->message->chat->id;
 $message_id2 = $update->callback_query->message->message_id;
@@ -8039,8 +8029,8 @@ bot('sendmessage',[
 'reply_to_message_id'=>$message_id,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ ابدء ⁞✵' ,'callback_data'=>"mai1"],['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
-[['text'=>"⌔ مبرمج السورس ⁞✵",'url'=>"t.me/KKDRR"]],
+[['text'=>'✵⁞ ابدء ⁞✵' ,'callback_data'=>"mai1"],['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>"✵⁞ مبرمج السورس ⁞✵",'url'=>"t.me/$buy"]],
 ]])
 ]); 
 }
@@ -8057,8 +8047,8 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ ابدء ⁞✵' ,'callback_data'=>"mai1"],['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
-[['text'=>"⌔ مبرمج السورس ⁞✵",'url'=>"t.me/KKDRR"]],
+[['text'=>'✵⁞ ابدء ⁞✵' ,'callback_data'=>"mai1"],['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>"✵⁞ مبرمج السورس ⁞✵",'url'=>"t.me/$buy"]],
 ]])
 ]); 
 }
@@ -8071,8 +8061,8 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ رجوع ⁞✵' ,'callback_data'=>"nd3"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ رجوع ⁞✵' ,'callback_data'=>"nd3"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 }
@@ -8085,8 +8075,8 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ رجوع ⁞✵' ,'callback_data'=>"nd3"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ رجوع ⁞✵' ,'callback_data'=>"nd3"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 }
@@ -8100,10 +8090,10 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ كركوك ⁞✵' ,'callback_data'=>"nb1"]],
-[['text'=>'⌔ بغداد ⁞✵' ,'callback_data'=>"mai2"]],
-[['text'=>'⌔ بصره ⁞✵' ,'callback_data'=>"nb"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ كركوك ⁞✵' ,'callback_data'=>"nb1"]],
+[['text'=>'✵⁞ بغداد ⁞✵' ,'callback_data'=>"mai2"]],
+[['text'=>'✵⁞ بصره ⁞✵' ,'callback_data'=>"nb"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 }
@@ -8119,8 +8109,8 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ التالي ⁞✵' ,'callback_data'=>"mil3"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ التالي ⁞✵' ,'callback_data'=>"mil3"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 file_put_contents("gamemil.txt","gamemil");
@@ -8136,10 +8126,10 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ خمسه ⁞✵' ,'callback_data'=>"nb1"]],
-[['text'=>'⌔ سبعه ⁞✵' ,'callback_data'=>"mai4"]],
-[['text'=>'⌔ ثلاث ⁞✵' ,'callback_data'=>"nb"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ خمسه ⁞✵' ,'callback_data'=>"nb1"]],
+[['text'=>'✵⁞ سبعه ⁞✵' ,'callback_data'=>"mai4"]],
+[['text'=>'✵⁞ ثلاث ⁞✵' ,'callback_data'=>"nb"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 }
@@ -8155,8 +8145,8 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ التالي ⁞✵' ,'callback_data'=>"mil5"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ التالي ⁞✵' ,'callback_data'=>"mil5"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 file_put_contents("data/gamemil.txt","gamemil");
@@ -8172,10 +8162,10 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ واحد ⁞✵' ,'callback_data'=>"nb1"]],
-[['text'=>'⌔ ثلاث ⁞✵' ,'callback_data'=>"mai6"]],
-[['text'=>'⌔ ثنين ⁞✵' ,'callback_data'=>"nb"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ واحد ⁞✵' ,'callback_data'=>"nb1"]],
+[['text'=>'✵⁞ ثلاث ⁞✵' ,'callback_data'=>"mai6"]],
+[['text'=>'✵⁞ ثنين ⁞✵' ,'callback_data'=>"nb"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 }
@@ -8191,8 +8181,8 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ التالي ⁞✵' ,'callback_data'=>"mil7"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ التالي ⁞✵' ,'callback_data'=>"mil7"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 file_put_contents("data/gamemil.txt","gamemil");
@@ -8208,10 +8198,10 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ الفحم ⁞✵' ,'callback_data'=>"nb1"]],
-[['text'=>'⌔ البانزين ⁞✵' ,'callback_data'=>"mai8"]],
-[['text'=>'⌔ الغاز ⁞✵' ,'callback_data'=>"nb"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ الفحم ⁞✵' ,'callback_data'=>"nb1"]],
+[['text'=>'✵⁞ البانزين ⁞✵' ,'callback_data'=>"mai8"]],
+[['text'=>'✵⁞ الغاز ⁞✵' ,'callback_data'=>"nb"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 }
@@ -8227,8 +8217,8 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ التالي ⁞✵' ,'callback_data'=>"mil9"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ التالي ⁞✵' ,'callback_data'=>"mil9"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 file_put_contents("data/gamemil.txt","gamemil");
@@ -8244,10 +8234,10 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ النبي محمد ⁞✵' ,'callback_data'=>"mai10"]],
-[['text'=>'⌔ النبي عيسئ ⁞✵' ,'callback_data'=>"nb1"]],
-[['text'=>'⌔ النبي ابراهيم ⁞✵' ,'callback_data'=>"nb"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ النبي محمد ⁞✵' ,'callback_data'=>"mai10"]],
+[['text'=>'✵⁞ النبي عيسئ ⁞✵' ,'callback_data'=>"nb1"]],
+[['text'=>'✵⁞ النبي ابراهيم ⁞✵' ,'callback_data'=>"nb"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 }
@@ -8263,8 +8253,8 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ التالي ⁞✵' ,'callback_data'=>"mil11"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ التالي ⁞✵' ,'callback_data'=>"mil11"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 file_put_contents("data/gamemil.txt","gamemil");
@@ -8280,10 +8270,10 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ لندن ⁞✵' ,'callback_data'=>"nb1"]],
-[['text'=>'⌔ باريس ⁞✵' ,'callback_data'=>"mil12"]],
-[['text'=>'⌔ واشنطن ⁞✵' ,'callback_data'=>"nb"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ لندن ⁞✵' ,'callback_data'=>"nb1"]],
+[['text'=>'✵⁞ باريس ⁞✵' ,'callback_data'=>"mil12"]],
+[['text'=>'✵⁞ واشنطن ⁞✵' ,'callback_data'=>"nb"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 }
@@ -8300,8 +8290,8 @@ bot('EditMessageText',[
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ العودة ⁞✵' ,'callback_data'=>"nd3"]],
-[['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
+[['text'=>'✵⁞ العودة ⁞✵' ,'callback_data'=>"nd3"]],
+[['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"deletmil"]],
 ]])
 ]); 
 file_put_contents("data/gamemil.txt","gamemil");
@@ -8328,7 +8318,7 @@ bot('sendmessage',[
 [['text'=>'⋄ معاني ⋄' ,'callback_data'=>"man1"],['text'=>'⋄ محيبس ⋄' ,'callback_data'=>"mas"]],
 [['text'=>'⋄ قريبأ ⋄' ,'callback_data'=>"OFF"],['text'=>'⋄ قريبأ ⋄' ,'callback_data'=>"OFF"]],
 [['text'=>'⋄ الغاء ⋄' ,'callback_data'=>"deletmil"]],
-[['text'=>"⋄ قناة السورس ⋄",'url'=>"t.me/FunctionCode"]],
+[['text'=>"⋄ قناة السورس ⋄",'url'=>"t.me/FT_III"]],
 ]])
 ]); 
 }
@@ -8348,7 +8338,7 @@ bot('EditMessageText',[
 [['text'=>'⋄ معاني ⋄' ,'callback_data'=>"man1"],['text'=>'⋄ محيبس ⋄' ,'callback_data'=>"mas"]],
 [['text'=>'⋄ قريبأ ⋄' ,'callback_data'=>"OFF"],['text'=>'⋄ قريبأ ⋄' ,'callback_data'=>"OFF"]],
 [['text'=>'⋄ الغاء ⋄' ,'callback_data'=>"deletmil"]],
-[['text'=>"⋄ قناة السورس ⋄",'url'=>"t.me/FunctionCode"]],
+[['text'=>"⋄ قناة السورس ⋄",'url'=>"t.me/FT_III"]],
 ]])
 ]); 
 }
@@ -8874,9 +8864,9 @@ $m = "⋄︙عزيزي ← [$name](tg://user?id=$from_id)
 ⋄︙الان قم ب تحديد الرتبه";
 $time = date('h:i A');
 date_default_timezone_set('Asia/Baghdad');
-$idLEGR = file_get_contents("data/LEGR.json");
+$idcarlos = file_get_contents("data/carlos.json");
 if($re and $text == "تنزيل" and $text == "رفع"){
-file_put_contents("data/LEGR.json","$re_id");
+file_put_contents("data/carlos.json","$re_id");
 if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer)) {if ($tc == 'group' | $tc == 'supergroup'){
 $add = $settings["information"]["added"];
 if ($add == true){
@@ -8894,7 +8884,7 @@ bot('sendmessage',[
 [['text'=>'⋄ ادمن ⋄' ,'callback_data'=>"ad"],['text'=>'⋄ ادمن ⋄' ,'callback_data'=>"delad"]],
 [['text'=>'⋄ مميز ⋄' ,'callback_data'=>"mz"],['text'=>'⋄ مميز ⋄' ,'callback_data'=>"delmz"]],
 [['text'=>'⋄ الغاء ⋄' ,'callback_data'=>"deletmil"]],
-[['text'=>"⋄ قناة السورس ⋄",'url'=>"t.me/FunctionCode"]],
+[['text'=>"⋄ قناة السورس ⋄",'url'=>"t.me/FT_III"]],
 ]])
 ]); 
 }
@@ -8909,15 +8899,15 @@ bot('sendmessage',[
 }}}}
 if($data == "mnas"){
 if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$eri)) {
-if (!in_array($idLEGR,$nazar)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
-file_put_contents("data/nazar/$chat_id.txt",$idLEGR . "\n" , FILE_APPEND);
-file_put_contents("data/nazar/$chat_id/nazr.txt" , " *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idLEGR ."` *𓆪* ". "\n" , FILE_APPEND);
+if (!in_array($idcarlos,$nazar)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
+file_put_contents("data/nazar/$chat_id.txt",$idcarlos . "\n" , FILE_APPEND);
+file_put_contents("data/nazar/$chat_id/nazr.txt" , " *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idcarlos ."` *𓆪* ". "\n" , FILE_APPEND);
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙تم ترقيه ليصبح ← منشئ اساسي",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -8931,13 +8921,13 @@ bot('EditMessageText',[
 }}}
 if ($data == "mnas"){
 if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$eri)) {
-if (in_array($idLEGR,$nazar)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
+if (in_array($idcarlos,$nazar)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙هوه بالفعل ← منشئ اساسي",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -8951,20 +8941,20 @@ bot('EditMessageText',[
 }}}
 if ($data == "delmnas"){
 if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$eri)) {
-if (in_array($idLEGR,$nazar)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
-$re_id_info = file_get_contents("data/LEGR/$chat_id.txt");
-	$mdrs = file_get_contents("data/LEGR/$chat_id/crlo.txt");
+if (in_array($idcarlos,$nazar)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
+$re_id_info = file_get_contents("data/carlos/$chat_id.txt");
+	$mdrs = file_get_contents("data/carlos/$chat_id/crlo.txt");
 	$mdrs1 = explode("             \n",$mdrs);
-	$str = str_replace($idLEGR,"",$re_id_info);
-	$str2 = str_replace(" *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idLEGR ."` *𓆪* ","",$mdrs1);
-	file_put_contents("data/LEGR/$chat_id.txt",$str);
-	file_put_contents("data/LEGR/$chat_id/crlo.txt",$str2);
+	$str = str_replace($idcarlos,"",$re_id_info);
+	$str2 = str_replace(" *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idcarlos ."` *𓆪* ","",$mdrs1);
+	file_put_contents("data/carlos/$chat_id.txt",$str);
+	file_put_contents("data/carlos/$chat_id/crlo.txt",$str2);
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙تم تنزيل من ← المنشيئن الاساسين",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -8978,13 +8968,13 @@ bot('EditMessageText',[
 }}
 if ($data == "delmnas"){
 if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$eri)) {
-if (!in_array($idLEGR,$nazar)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
+if (!in_array($idcarlos,$nazar)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙لا استطيع تنزيله هوه ليس  ← منشئ اساسي",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -8998,15 +8988,15 @@ bot('EditMessageText',[
 }}
 if($data == "mn"){
 if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (!in_array($idLEGR,$LEGR)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
-file_put_contents("data/LEGR/$chat_id.txt",$idLEGR . "\n" , FILE_APPEND);
-file_put_contents("data/LEGR/$chat_id/crlo.txt" , " *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idLEGR ."` *𓆪* ". "\n" , FILE_APPEND);
+if (!in_array($idcarlos,$carlos)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
+file_put_contents("data/carlos/$chat_id.txt",$idcarlos . "\n" , FILE_APPEND);
+file_put_contents("data/carlos/$chat_id/crlo.txt" , " *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idcarlos ."` *𓆪* ". "\n" , FILE_APPEND);
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙تم ترقيه ليصبح ← منشئ",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9020,13 +9010,13 @@ bot('EditMessageText',[
 }}}
 if ($data == "mn"){
 if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (in_array($idLEGR,$LEGR)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
+if (in_array($idcarlos,$carlos)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙هوه بالفعل ← منشئ",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9040,20 +9030,20 @@ bot('EditMessageText',[
 }}}
 if ($data == "delmn"){
 if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (in_array($idLEGR,$LEGR)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
-$re_id_info = file_get_contents("data/LEGR/$chat_id.txt");
-	$mdrs = file_get_contents("data/LEGR/$chat_id/crlo.txt");
+if (in_array($idcarlos,$carlos)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
+$re_id_info = file_get_contents("data/carlos/$chat_id.txt");
+	$mdrs = file_get_contents("data/carlos/$chat_id/crlo.txt");
 	$mdrs1 = explode("             \n",$mdrs);
-	$str = str_replace($idLEGR,"",$re_id_info);
-	$str2 = str_replace(" *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idLEGR ."` *𓆪* ","",$mdrs1);
-	file_put_contents("data/LEGR/$chat_id.txt",$str);
-	file_put_contents("data/LEGR/$chat_id/crlo.txt",$str2);
+	$str = str_replace($idcarlos,"",$re_id_info);
+	$str2 = str_replace(" *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idcarlos ."` *𓆪* ","",$mdrs1);
+	file_put_contents("data/carlos/$chat_id.txt",$str);
+	file_put_contents("data/carlos/$chat_id/crlo.txt",$str2);
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙تم تنزيل من ← المنشئين",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9067,13 +9057,13 @@ bot('EditMessageText',[
 }}
 if ($data == "delmn"){
 if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (!in_array($idLEGR,$LEGR)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
+if (!in_array($idcarlos,$carlos)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙لا استطيع تنزيله هوه ليس  ← منشئ",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9086,16 +9076,16 @@ bot('EditMessageText',[
 }
 }}
 if($data == "md"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (!in_array($idLEGR,$manger)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
-file_put_contents("data/manger/$chat_id.txt",$idLEGR . "\n" , FILE_APPEND);
-file_put_contents("data/manger/$chat_id/mange.txt" , " *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idLEGR ."` *𓆪* ". "\n" , FILE_APPEND);
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$carlos) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
+if (!in_array($idcarlos,$manger)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
+file_put_contents("data/manger/$chat_id.txt",$idcarlos . "\n" , FILE_APPEND);
+file_put_contents("data/manger/$chat_id/mange.txt" , " *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idcarlos ."` *𓆪* ". "\n" , FILE_APPEND);
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙تم ترقيه ليصبح ← مدير",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9108,14 +9098,14 @@ bot('EditMessageText',[
 ]); 
 }}}
 if ($data == "md"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (in_array($idLEGR,$manger)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$carlos) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
+if (in_array($idcarlos,$manger)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙هوه بالفعل ← مدير",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9128,21 +9118,21 @@ bot('EditMessageText',[
 ]); 
 }}}
 if ($data == "delmd"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (in_array($idLEGR,$manger)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$carlos) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
+if (in_array($idcarlos,$manger)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
 $re_id_info = file_get_contents("data/manger/$chat_id.txt");
 	$mdrs = file_get_contents("data/manger/$chat_id/mange.txt");
 	$mdrs1 = explode("             \n",$mdrs);
-	$str = str_replace($idLEGR,"",$re_id_info);
-	$str2 = str_replace(" *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idLEGR ."` *𓆪* ","",$mdrs1);
+	$str = str_replace($idcarlos,"",$re_id_info);
+	$str2 = str_replace(" *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idcarlos ."` *𓆪* ","",$mdrs1);
 	file_put_contents("data/manger/$chat_id.txt",$str);
 	file_put_contents("data/manger/$chat_id/mange.txt",$str2);
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙تم تنزيل من ← المدراء",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9156,14 +9146,14 @@ bot('EditMessageText',[
 }
 }
 if ($data == "delmd"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (!in_array($idLEGR,$manger)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$developer) or in_array($from_id2,$carlos) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
+if (!in_array($idcarlos,$manger)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙لا استطيع تنزيله هوه ليس  ← مدير",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9177,16 +9167,16 @@ bot('EditMessageText',[
 }
 }
 if($data == "ad"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$developer) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (!in_array($idLEGR,$admin_user)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
-file_put_contents("data/admin_user/$chat_id.txt",$idLEGR . "\n" , FILE_APPEND);
-file_put_contents("data/admin_user/$chat_id/mange.txt" , " *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* ". $idLEGR ." *𓆪* ". "\n" , FILE_APPEND);
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$developer) or in_array($from_id2,$carlos) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
+if (!in_array($idcarlos,$admin_user)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
+file_put_contents("data/admin_user/$chat_id.txt",$idcarlos . "\n" , FILE_APPEND);
+file_put_contents("data/admin_user/$chat_id/mange.txt" , " *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* ". $idcarlos ." *𓆪* ". "\n" , FILE_APPEND);
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙تم ترقيه ليصبح ← ادمن",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9199,14 +9189,14 @@ bot('EditMessageText',[
 ]); 
 }}}
 if ($data == "ad"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$developer) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (in_array($idLEGR,$admin_user)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$developer) or in_array($from_id2,$carlos) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
+if (in_array($idcarlos,$admin_user)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙هوه بالفعل ← ادمن",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9219,21 +9209,21 @@ bot('EditMessageText',[
 ]); 
 }}}
 if ($data == "delad"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$developer) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (in_array($idLEGR,$admin_user)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$developer) or in_array($from_id2,$carlos) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
+if (in_array($idcarlos,$admin_user)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
 $re_id_info = file_get_contents("data/admin_user/$chat_id.txt");
  $admn = file_get_contents("data/admin_user/$chat_id/mange.txt");
  $admn1 = explode("             \n",$admn);
- $str = str_replace($idLEGR,"",$re_id_info);
- $str2 = str_replace(" *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* ". $idLEGR ." *𓆪* ","",$admn1);
+ $str = str_replace($idcarlos,"",$re_id_info);
+ $str2 = str_replace(" *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* ". $idcarlos ." *𓆪* ","",$admn1);
  file_put_contents("data/admin_user/$chat_id.txt",$str);
  file_put_contents("data/admin_user/$chat_id/mange.txt",$str2);
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙تم تنزيل من ← الادمنيه",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9247,14 +9237,14 @@ bot('EditMessageText',[
 }
 }
 if ($data == "delad"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$developer) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (in_array($idLEGR,$admin_user)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$developer) or in_array($from_id2,$carlos) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
+if (in_array($idcarlos,$admin_user)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙لا استطيع تنزيله هوه ليس  ← ادمن",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9268,16 +9258,16 @@ bot('EditMessageText',[
 }
 }
 if($data == "mz"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (!in_array($idLEGR,$mmyaz)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
-file_put_contents("data/mmyaz/$chat_id.txt",$idLEGR . "\n" , FILE_APPEND);
-file_put_contents("data/mmyaz/$chat_id/mange.txt" , " *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idLEGR ."` *𓆪* ". "\n" , FILE_APPEND);
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$carlos) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
+if (!in_array($idcarlos,$mmyaz)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
+file_put_contents("data/mmyaz/$chat_id.txt",$idcarlos . "\n" , FILE_APPEND);
+file_put_contents("data/mmyaz/$chat_id/mange.txt" , " *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idcarlos ."` *𓆪* ". "\n" , FILE_APPEND);
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙تم ترقيه ليصبح ← مميز",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9290,14 +9280,14 @@ bot('EditMessageText',[
 ]); 
 }}}
 if ($data == "mz"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (in_array($idLEGR,$mmyaz)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$carlos) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
+if (in_array($idcarlos,$mmyaz)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙هوه بالفعل ← مميز",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9310,21 +9300,21 @@ bot('EditMessageText',[
 ]); 
 }}}
 if ($data == "delmz"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (in_array($idLEGR,$mmyaz)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$carlos) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
+if (in_array($idcarlos,$mmyaz)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
 $re_id_info = file_get_contents("data/mmyaz/$chat_id.txt");
 	$mdrs = file_get_contents("data/mmyaz/$chat_id/mange.txt");
 	$mdrs1 = explode("             \n",$mdrs);
-	$str = str_replace($idLEGR,"",$re_id_info);
-	$str2 = str_replace(" *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idLEGR ."` *𓆪* ","",$mdrs1);
+	$str = str_replace($idcarlos,"",$re_id_info);
+	$str2 = str_replace(" *𓆩* [" . "@". $userr ."] *𓆪* " . "»" . " *𓆩* `". $idcarlos ."` *𓆪* ","",$mdrs1);
 	file_put_contents("data/mmyaz/$chat_id.txt",$str);
 	file_put_contents("data/mmyaz/$chat_id/mange.txt",$str2);
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙تم تنزيل من ← المميزين",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9338,14 +9328,14 @@ bot('EditMessageText',[
 }
 }
 if ($data == "delmz"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
-if (!in_array($idLEGR,$mmyaz)){
-$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->username;
-$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idLEGR"))->result->first_name;
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$carlos) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
+if (!in_array($idcarlos,$mmyaz)){
+$userr = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->username;
+$namee = json_decode(file_get_contents("http://api.telegram.org/bot$token/getChat?chat_id=$idcarlos"))->result->first_name;
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idLEGR)
+'text'=>"⋄︙العضو ← [$namee](tg://user?id=$idcarlos)
 ⋄︙لا استطيع تنزيله هوه ليس  ← مميز",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
@@ -9359,7 +9349,7 @@ bot('EditMessageText',[
 }
 }
 if ($data == "rafaa"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$carlos) or in_array($from_id2,$eri) or in_array($from_id2,$nazar)) {
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
@@ -9377,7 +9367,7 @@ bot('EditMessageText',[
 [['text'=>'⋄ ادمن ⋄' ,'callback_data'=>"ad"],['text'=>'⋄ ادمن ⋄' ,'callback_data'=>"delad"]],
 [['text'=>'⋄ مميز ⋄' ,'callback_data'=>"mz"],['text'=>'⋄ مميز ⋄' ,'callback_data'=>"delmz"]],
 [['text'=>'⋄ الغاء ⋄' ,'callback_data'=>"deletmil"]],
-[['text'=>"⋄ قناة السورس ⋄",'url'=>"t.me/FunctionCode"]],
+[['text'=>"⋄ قناة السورس ⋄",'url'=>"t.me/FT_III"]],
 ]])
 ]); 
 }
@@ -9605,7 +9595,7 @@ if($text == 'جهاتي'){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ عدد جهاتك المضافه هنا ~ $new
+✵⁞ عدد جهاتك المضافه هنا ~ $new
 ",
 'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 ]);
@@ -9622,7 +9612,7 @@ $info = "مطور الاساسي";
 elseif(in_array($from_id,$nazar) ){
 $info = "منشئ اساسي";
 }
-elseif(in_array($from_id,$LEGR) ){
+elseif(in_array($from_id,$carlos) ){
 $info = "منشئ";
 }
 elseif($status == "creator"){
@@ -9682,7 +9672,7 @@ bot('sendmessage',[
 - لعرض سحكات > `{سحكاتي}`
 - لعرض اسم مجموعه > `{اسم الجموعة}`
 
-⋄︙ قناة كلايش الايدي : [@KKDRR]
+⋄︙ قناة كلايش الايدي : [@$devchink]
 ",'parse_mode'=>"MARKDOWN",'disable_web_page_preview'=>true,
 'reply_to_message_id'=>$message->message_id,
 ]);
@@ -10278,7 +10268,7 @@ bot("sendmessage",['chat_id'=>$chat_id,'text'=>"⋄︙ححذف و عيش حيا�
 }
 
 if ( $rt && $text =="تثبيت"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) { bot('pinChatMessage',[
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) { bot('pinChatMessage',[
     'chat_id'=>$chat_id,
     'message_id'=>$replyid
       ]);
@@ -10293,7 +10283,7 @@ bot('sendmessage',[
  }
 }
 elseif(  $text =="الغاء التثبيت"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) { bot('unpinChatMessage',[
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) { bot('unpinChatMessage',[
     'chat_id'=>$chat_id,
     'message_id'=>$replyid
       ]);
@@ -10309,7 +10299,7 @@ bot('sendmessage',[
 }
 
 if ($text =="تفعيل البحث" ){
-if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$LEGR) || in_array($from_id,$eri) || in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$carlos) || in_array($from_id,$eri) || in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {	
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -10335,7 +10325,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="تعطيل البحث" ){
-if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$LEGR) || in_array($from_id,$eri) || in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$carlos) || in_array($from_id,$eri) || in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -10362,7 +10352,7 @@ bot('sendmessage',[
 }
 }
 elseif( $text =="تفعيل اغاني" or $text == "تفعيل الاغاني"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {	
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -10388,7 +10378,7 @@ bot('sendmessage',[
 }
 }
 if ( $text =="تعطيل الاغاني" or $text == "تعطيل اغاني"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -10415,7 +10405,7 @@ bot('sendmessage',[
 }
 }
 elseif( $text =="تفعيل الرفع" or $text == "تفعيل الرفع"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {	
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -10441,7 +10431,7 @@ bot('sendmessage',[
 }
 }
 if ( $text =="تعطيل الرفع" or $text == "تعطيل الرفع"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -10468,7 +10458,7 @@ bot('sendmessage',[
 }
 }
 elseif( $text =="تفعيل نزلني" or $text == "تفعيل نزل"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {	
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -10494,7 +10484,7 @@ bot('sendmessage',[
 }
 }
 if ( $text =="تعطيل نزلني" or $text == "تعطيل نزل"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -10521,7 +10511,7 @@ bot('sendmessage',[
 }
 }
 elseif( $text =="تفعيل حساب العمر" or $text == "تفعيل العمر"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {	
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -10547,7 +10537,7 @@ bot('sendmessage',[
 }
 }
 if ( $text =="تعطيل حساب العمر" or $text == "تعطيل العمر"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -10574,7 +10564,7 @@ bot('sendmessage',[
 }
 }
 elseif( $text =="تفعيل ضافني" or $text == "تفعيل الضافني"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {	
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -10600,7 +10590,7 @@ bot('sendmessage',[
 }
 }
 if ( $text =="تعطيل ضافني" or $text == "تعطيل الضافني"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -10627,7 +10617,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="تفعيل الالعاب" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {	
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -10653,7 +10643,7 @@ bot('sendmessage',[
 }
 }
 if ($text =="تعطيل الالعاب" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -11080,14 +11070,14 @@ file_put_contents("data/sorceu.json","");
 }
 }
 elseif($text =="م1" and $m1 == null){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 if (!in_array($status,$member) && !in_array($from_id,$mmyaz)) {
 if ($tc == 'group' | $tc == 'supergroup'){
 $add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
-'text'=>"⋄︙اوامر الحمايه سورس ليجر
+'text'=>"⋄︙اوامر الحمايه لسورس النيزك
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
 ⋄︙قفل ، فتح ← الامر 
 ⋄︙تستطيع قفل حمايه كما يلي ...
@@ -11159,7 +11149,7 @@ bot('sendmessage',[
 	}
 }
 elseif($text =="م2" and $m2 == null){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 if (!in_array($status,$member) && !in_array($from_id,$mmyaz)) {
 if ($tc == 'group' | $tc == 'supergroup'){
 $add = $settings["information"]["added"];
@@ -11238,7 +11228,7 @@ bot('sendmessage',[
 	}
 }
 elseif($text =="م3" and $m3 == null){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 if (!in_array($status,$member) && !in_array($from_id,$mmyaz)) {
 if ($tc == 'group' | $tc == 'supergroup'){
 $add = $settings["information"]["added"];
@@ -11305,7 +11295,7 @@ bot('sendmessage',[
 	}
 }
 elseif($text =="م4" and $m4 == null){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 if (!in_array($status,$member) && !in_array($from_id,$mmyaz)) {
 if ($tc == 'group' | $tc == 'supergroup'){
 $add = $settings["information"]["added"];
@@ -11449,7 +11439,7 @@ $add = $settings["information"]["added"];
 if($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
-'text'=>"⋄︙اوامر الاعضاء لسورس ليجر
+'text'=>"⋄︙اوامر الاعضاء لسورس النيزك
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
 ⋄︙تحويل/بالرد - لتحويل صيغ 
 ⋄︙ملصق ← صوره
@@ -11489,8 +11479,6 @@ bot('sendmessage',[
 ]);
 }
 }
-
-$chup = "KKDRR";
 $m = "⋄︙توجد ← 6 اوامر في البوت
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
 ⋄︙ارسل {م1} ← اوامر الحمايه
@@ -11500,8 +11488,8 @@ $m = "⋄︙توجد ← 6 اوامر في البوت
 ⋄︙ارسل {م5} ← اوامر المطورين
 ⋄︙ارسل {م6} ← اوامر الاعضاء
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⋄︙قناة البوت ← [@$chup]";
-$m1 = "⋄︙اوامر الحمايه سورس ليجر
+⋄︙قناة البوت ← [@$devchink]";
+$m1 = "⋄︙اوامر الحمايه سورس النيزك
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
 ⋄︙قفل ، فتح ← الامر 
 ⋄︙تستطيع قفل حمايه كما يلي ...
@@ -11533,7 +11521,7 @@ $m1 = "⋄︙اوامر الحمايه سورس ليجر
 ⋄︙الجهات
 ⋄︙الاشعارات
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⋄︙قناة البوت ← [@$chup]";
+⋄︙قناة البوت ← [@$devchink]";
 $m2 = "⋄︙اوامر ادمنية المجموعه ...
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
 ⋄︙رفع، تنزيل ← مميز
@@ -11566,7 +11554,7 @@ $m2 = "⋄︙اوامر ادمنية المجموعه ...
 ⋄︙المطرودين ، البوتات ، الصوره
 ⋄︙الرابط
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⋄︙قناة البوت ← [@$chup]";
+⋄︙قناة البوت ← [@$devchink]";
 $m3 ="⋄︙اوامر المدراء في المجموعه
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
 ⋄︙رفع ، تنزيل ← ادمن
@@ -11587,7 +11575,7 @@ $m3 ="⋄︙اوامر المدراء في المجموعه
 ⋄︙اضف ، حذف ← { رد }
 ⋄︙تنظيف ← { عدد }
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⋄︙قناة البوت ← [@$chup]";
+⋄︙قناة البوت ← [@$devchink]";
 $m4 = "⋄︙اوامر المنشئ الاساسي
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
 ⋄︙رفع ، تنزيل ←{ منشئ }
@@ -11603,7 +11591,7 @@ $m4 = "⋄︙اوامر المنشئ الاساسي
 ⋄︙الاوامر المضافه ، مسح الاوامر المضافه
 ⋄︙تنزيل الكل
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⋄︙قناة البوت ← [@$chup]";
+⋄︙قناة البوت ← [@$devchink]";
 $m5 = "⋄︙اوامر المطور الاساسي  
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
 ⋄︙حظر عام ، الغاء العام
@@ -11636,8 +11624,8 @@ $m5 = "⋄︙اوامر المطور الاساسي
 ⋄︙حذف امر الاوامر ← حذف امر م6
 ⋄︙تعين امر السورس ← حذف امر السورس
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⋄︙قناة البوت ← [@$chup]";
-$m6 = "⋄︙اوامر الاعضاء لسورس ليجر
+⋄︙قناة البوت ← [@$devchink]";
+$m6 = "⋄︙اوامر الاعضاء لسورس النيزك
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
 ⋄︙تحويل/بالرد - لتحويل صيغ 
 ⋄︙ملصق ← صوره
@@ -11658,11 +11646,11 @@ $m6 = "⋄︙اوامر الاعضاء لسورس ليجر
 ⋄︙الابراج ← لعرض توقعات برجك
 ⋄︙نادي ← بالرد ← لمنادات شخص
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⋄︙قناة البوت ← [@$chup]";
+⋄︙قناة البوت ← [@$devchink]";
 $time = date('h:i A');
 date_default_timezone_set('Asia/Baghdad');
 if($text =="الاوامر"){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$nazar) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri)) {
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$nazar) or in_array($from_id2,$carlos) or in_array($from_id2,$eri)) {
 if ($tc == 'group' | $tc == 'supergroup'){
 $add = $settings["information"]["added"];
 if ($add == true) {
@@ -11692,7 +11680,7 @@ bot('sendmessage',[
 ]);
 }}}}
 if($data == "1" ){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$nazar) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri)) {
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$nazar) or in_array($from_id2,$carlos) or in_array($from_id2,$eri)) {
 bot('EditMessageText',[
 'chat_id'=>$update->callback_query->message->chat->id,
 'message_id'=>$update->callback_query->message->message_id,
@@ -11718,7 +11706,7 @@ bot('answerCallbackQuery',[
 } 
 }
 if($data == "2" ){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$nazar) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri)) {
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$nazar) or in_array($from_id2,$carlos) or in_array($from_id2,$eri)) {
 bot('EditMessageText',[
 'chat_id'=>$update->callback_query->message->chat->id,
 'message_id'=>$update->callback_query->message->message_id,
@@ -11744,7 +11732,7 @@ bot('answerCallbackQuery',[
 } 
 }
 if($data == "3" ){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$nazar) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri)) {
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$nazar) or in_array($from_id2,$carlos) or in_array($from_id2,$eri)) {
 bot('EditMessageText',[
 'chat_id'=>$update->callback_query->message->chat->id,
 'message_id'=>$update->callback_query->message->message_id,
@@ -11770,7 +11758,7 @@ bot('answerCallbackQuery',[
 } 
 }
 if($data == "4" ){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$nazar) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri)) {
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$nazar) or in_array($from_id2,$carlos) or in_array($from_id2,$eri)) {
 bot('EditMessageText',[
 'chat_id'=>$update->callback_query->message->chat->id,
 'message_id'=>$update->callback_query->message->message_id,
@@ -11822,7 +11810,7 @@ bot('answerCallbackQuery',[
 } 
 }
 if($data == "6" ){
-if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$nazar) or in_array($from_id2,$LEGR) or in_array($from_id2,$eri)) {
+if ( $status == 'creator' or in_array($from_id2,$Dev) or in_array($from_id2,$manger) or in_array($from_id2,$admin_user) or in_array($from_id2,$developer) or in_array($from_id2,$nazar) or in_array($from_id2,$carlos) or in_array($from_id2,$eri)) {
 bot('EditMessageText',[
 'chat_id'=>$update->callback_query->message->chat->id,
 'message_id'=>$update->callback_query->message->message_id,
@@ -11853,12 +11841,12 @@ bot('deletemessage',[
 'message_id'=>$update->callback_query->message->message_id,
 ]);}
 
-$tofLEGR = array("خشوف وجهه يستاهل تفله","دي لك يخره شوف وجهك حرامت اذب تفلتي عليه😈👋🏿","دمشي لاتفل بخشمك🥱👏🏿","لك ياحيوان حترم لا اهينك اتفل بعينك😟🤘🏿","انته شايف وجهكك ب امرايه☹️🤘🏿");
-$tofLEGR2 = array_rand($tofLEGR, 1);
+$tofcarlos = array("خشوف وجهه يستاهل تفله","دي لك يخره شوف وجهك حرامت اذب تفلتي عليه😈👋🏿","دمشي لاتفل بخشمك🥱👏🏿","لك ياحيوان حترم لا اهينك اتفل بعينك😟🤘🏿","انته شايف وجهكك ب امرايه☹️🤘🏿");
+$tofcarlos2 = array_rand($tofcarlos, 1);
 if($rt and !in_array($re_id,$Dev) and !in_array($re_id,$eri)){
 if($text == "اتفل عليه" or $text == "شيله تفله" or $text == "تفله" or $text == "خخ تف" or $text == "بعد تفله" or $text == "ضل تفله" or $text == "تفف" or $text == "تتف"){
 bot('sendMessage',[ 'chat_id'=>$chat_id, 'text'=>"حاضر ستادي هسه شبعه تفال😻🤘🏿", 'reply_to_message_id'=>$message->message_id, ]);
-bot('sendMessage',[ 'chat_id'=>$chat_id, 'text'=>"$tofLEGR[$tofLEGR2]",'parse_mode'=>"MARKDOWN", 'reply_to_message_id'=>$message->reply_to_message->message_id ]); } }
+bot('sendMessage',[ 'chat_id'=>$chat_id, 'text'=>"$tofcarlos[$tofcarlos2]",'parse_mode'=>"MARKDOWN", 'reply_to_message_id'=>$message->reply_to_message->message_id ]); } }
 
 if($rt and in_array($re_id,$Dev) and in_array($re_id,$eri)){
 if($text == "اتفل عليه" or $text == "شيله تفله" or $text == "تفله" or $text == "خخ تف" or $text == "بعد تفله" or $text == "ضل تفله" or $text == "تفف" or $text == "تتف"){
@@ -11991,8 +11979,8 @@ bot('sendMessage',[
 'chat_id'=>$chat_id,
 'parse_mode'=>'markdown',
 'disable_web_page_preview'=>true,
-'text'=>"⌔  اهلا عزيزي ⋙ [$first_name](tg://user?id=$from_id)
-⌔ اليك نتائج البحث ( $text )
+'text'=>"✵⁞  اهلا عزيزي ⋙ [$first_name](tg://user?id=$from_id)
+✵⁞ اليك نتائج البحث ( $text )
 ",
 'reply_to_message_id'=>$message->message_id,
 'disable_web_page_preview'=> true ,
@@ -12013,29 +12001,29 @@ $startt = file_get_contents("data/set.txt");
 $starttext = file_get_contents("data/start.txt");
 if ($text == "تعيين رد الخاص" or $text == "تعيين الستارت" or $text == "⋄ تعين الاستارت" and in_array($from_id,$Dev)){
 file_put_contents("data/set.txt","setstart");
-bot("sendMessage",["chat_id"=>$chat_id,"text"=>"⌔ حسنأ عزيزي $info
+bot("sendMessage",["chat_id"=>$chat_id,"text"=>"✵⁞ حسنأ عزيزي $info
 ⌯⁞ ارسل الان كليشة الاستارت 
 ⌯⁞ لعرض الاسم ~⪼ `{Name}`
 ⌯⁞ لعرض الاسم البوت ~⪼ `{bot}`
 ⌯⁞ لعرض المعرف ~⪼ `@[{User}]`
 ⌯⁞ لعرض معرف المطور ~⪼ `@[{Dev}]`
 ⌯⁞ لعرض الايدي ~⪼ `{Id}`
-⌯⁞ قناة تعين : [@FunctionCode]
+⌯⁞ قناة تعين : [@FT_III]
 ",'parse_mode'=>"MARKDOWN",'reply_to_message_id'=>$message_id,]);}
 
 if($text && $startt =="setstart" and in_array($from_id,$Dev)){
 file_put_contents("data/start.txt",$text); 
 file_put_contents("data/set.txt","");
-bot("sendmessage",["chat_id"=>$chat_id,"text" => "⌔ حسنأ عزيزي $info
+bot("sendmessage",["chat_id"=>$chat_id,"text" => "✵⁞ حسنأ عزيزي $info
 ⌯⁞ تم حفظ كليشة الاستارت
 ",'parse_mode'=>"MARKDOWN",'reply_to_message_id'=>$message_id,]);}
 
 if ($text == "حذف رد الخاص" or $text == "حذف الستارت" or $text == "⋄ حذف الاستارت" and in_array($from_id,$Dev)){
 file_put_contents("data/start.txt","");
-bot("sendMessage",["chat_id"=>$chat_id,"text"=>"⌔ حسنأ عزيزي $info
+bot("sendMessage",["chat_id"=>$chat_id,"text"=>"✵⁞ حسنأ عزيزي $info
 ⌯⁞ تم حذف كليشة الاستارت
 ",'parse_mode'=>"MARKDOWN",'reply_to_message_id'=>$message_id,]);}
-# --     Source LEGR -     
+# --     Source carlos -     
 $user = $update->message->from->username;
 $times = date('h:i:s');
 $pirvate = explode("\n",file_get_contents("statistics/pirvate.txt"));
@@ -12051,7 +12039,7 @@ bot('sendmessage',['chat_id'=>$chat_id,'text'=>"
 ",'parse_mode'=>'MarkDown', 'disable_web_page_preview'=>true,'reply_to_message_id'=>$message->message_id,
 'reply_markup'=>json_encode([
 'inline_keyboard'=>[
-[['text'=>"⌔ المطور ⁞✵",'url'=>"t.me/$buy"]],]])]);}}}}
+[['text'=>"✵⁞ المطور ⁞✵",'url'=>"t.me/$buy"]],]])]);}}}}
 $starttext = file_get_contents("data/start.txt");
 if($text=="/start" and $starttext != null){
 if($tc == "private"){
@@ -12067,8 +12055,8 @@ $starttext = str_replace('{Dev}',$buy,$starttext);
 bot('sendmessage',['chat_id'=>$chat_id,'text'=>"$starttext",'parse_mode'=>'MarkDown', 'disable_web_page_preview'=>true,'reply_to_message_id'=>$message->message_id,
 'reply_markup'=>json_encode([
 'inline_keyboard'=>[
-[['text'=>"⌔ المطور ⁞✵",'url'=>"t.me/$buy"]],]])]);}}}}
-# --     Source LEGR     --
+[['text'=>"✵⁞ المطور ⁞✵",'url'=>"t.me/$buy"]],]])]);}}}}
+# --     Source carlos     --
 $startt = file_get_contents("data/set.txt");
 $starttext = file_get_contents("data/start.txt");
 if($text=="جلب الستارت" or $text=="جلب رد الخاص" or $text=="⋄ جلب الاستارت" and $starttext == null){
@@ -12093,17 +12081,17 @@ $starttext = str_replace('{User}',$user,$starttext);
 $starttext = str_replace('{Dev}',$buy,$starttext);
 if(in_array($from_id,$Dev) or in_array($from_id,$developer)){
 bot('sendmessage',['chat_id'=>$chat_id,'text'=>"$starttext",'parse_mode'=>'MarkDown', 'disable_web_page_preview'=>true,'reply_to_message_id'=>$message->message_id,]);}}} 
-# --     Source LEGR     --
+# --     Source carlos     --
 if($text =="تعطيل رد الخاص" or $text =="⋄ تعطيل الاستارت"){
 if (in_array($from_id,$Dev)){
-bot('sendmessage',['chat_id'=>$chat_id,'text'=>"⌔ حسنأ عزيزي $info
+bot('sendmessage',['chat_id'=>$chat_id,'text'=>"✵⁞ حسنأ عزيزي $info
 ⌯⁞ تعطيل رد الاستارت بنجاح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,'reply_to_message_id'=>$message_id,]);
 file_put_contents("data/startlock.txt","رد الخاص معطل");}}
 
 if($text =="تفعيل رد الخاص" or $text =="⋄ تفعيل الاستارت"){
 if (in_array($from_id,$Dev)){
-bot('sendmessage',['chat_id'=>$chat_id,'text'=>"⌔ حسنأ عزيزي $info
+bot('sendmessage',['chat_id'=>$chat_id,'text'=>"✵⁞ حسنأ عزيزي $info
 ⌯⁞ تفعيل رد الاستارت بنجاح
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,'reply_to_message_id'=>$message_id,]);
 file_put_contents("data/startlock.txt","رد الخاص مفعل");}}
@@ -12273,13 +12261,13 @@ $str = str_replace($from_id,"",$from_id_info);
 $str2 = str_replace(" *𓆩* [" . "@". $username ."] *𓆪* " . "»" . " *𓆩* `". $from_id ."` *𓆪* ","",$admn1);
 file_put_contents("data/admin_user/$chat_id.txt",$str);
 file_put_contents("data/admin_user/$chat_id/mange.txt",$str2);
-$from_id_info = file_get_contents("data/LEGR/$chat_id.txt");
-$cas = file_get_contents("data/LEGR/$chat_id/crlo.txt");
+$from_id_info = file_get_contents("data/carlos/$chat_id.txt");
+$cas = file_get_contents("data/carlos/$chat_id/crlo.txt");
 $cas1 = explode(" \n",$cas);
 $str = str_replace($from_id,"",$from_id_info);
 $str2 = str_replace(" *𓆩* [" . "@". $username ."] *𓆪* " . "»" . " *𓆩* `". $from_id ."` *𓆪* ","",$cas1);
-file_put_contents("data/LEGR/$chat_id.txt",$str);
-file_put_contents("data/LEGR/$chat_id/crlo.txt",$str2);
+file_put_contents("data/carlos/$chat_id.txt",$str);
+file_put_contents("data/carlos/$chat_id/crlo.txt",$str2);
 $from_id_info = file_get_contents("data/mmyaz/$chat_id.txt");
 $mdrs = file_get_contents("data/mmyaz/$chat_id/mange.txt");
 $mdrs1 = explode(" \n",$mdrs);
@@ -12297,7 +12285,7 @@ bot('restrictChatMember',[
 ]);
 bot('SendMessage',['chat_id'=>$chat_id,
 'text'=>"
-⌔ عزيزي ⋙「 [$first_name](tg://user?id=$from_id) 」 
+✵⁞ عزيزي ⋙「 [$first_name](tg://user?id=$from_id) 」 
 ⌯⁞ تم تنزيلك من جميع الرتب
 ",'parse_mode'=>'markdown','reply_to_message_id'=>$message->message_id,'disable_web_page_preview'=>true,
 ]);
@@ -12349,7 +12337,7 @@ bot('sendmessage',[
 
 $ti = explode("وضع لقب",$text);
 if($ti[1] && $rt){
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$eri) || in_array($from_id,$LEGR) || in_array($from_id,$nazar)) {
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$eri) || in_array($from_id,$carlos) || in_array($from_id,$nazar)) {
 bot('promoteChatMember',[
 'chat_id'=>$chat_id,
 'user_id'=>$re_id,
@@ -12368,7 +12356,7 @@ bot('setChatAdministratorCustomTitle',[
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ العضو ⋙「 [$re_name](tg://user?id=$re_id) 」 
+✵⁞ العضو ⋙「 [$re_name](tg://user?id=$re_id) 」 
 ⌯⁞ تم وضع ($ti[1]) لقب اليه
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 'reply_to_message_id'=>$message_id,
@@ -12382,7 +12370,7 @@ bot('SendMessage',['chat_id'=>$chat_id,
 ]);
 }}
 elseif($rt and $text == "لقبه"){
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$eri) || in_array($from_id,$LEGR) || in_array($from_id,$nazar)) {
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$eri) || in_array($from_id,$carlos) || in_array($from_id,$nazar)) {
 $a = json_decode(file_get_contents("https://api.telegram.org/bot".API_KEY."/getChatMember?chat_id=$chat_id&user_id=$re_id"));
 $b = $a->result->custom_title;
 if($b){
@@ -12391,7 +12379,7 @@ elseif(!$b){
 $b = "✵ ليس لديه لقب";}
 bot('sendmessage',[
 'chat_id'=>$chat_id,
-'text'=>"⌔ العضو ⋙「 [$re_name](tg://user?id=$re_id) 」 
+'text'=>"✵⁞ العضو ⋙「 [$re_name](tg://user?id=$re_id) 」 
 ⌯⁞ لقبه ⋙ $b
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 'reply_to_message_id'=>$message_id,
@@ -12413,7 +12401,7 @@ elseif(!$b){
 $b = "✵ ليس لديه لقب";}
 bot('sendmessage',[
 'chat_id'=>$chat_id,
-'text'=>"⌔ عزيزي ⋙「 [$re_name](tg://user?id=$re_id) 」 
+'text'=>"✵⁞ عزيزي ⋙「 [$re_name](tg://user?id=$re_id) 」 
 ⌯⁞ لقبك ⋙ $b
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 'reply_to_message_id'=>$message_id,
@@ -12425,8 +12413,8 @@ mkdir("msiss/$chat_id");
 $rt = $update->message->reply_to_message;
 $kakeii = json_decode(file_get_contents("msiss/$chat_id/miss.json"),1);
 if($rt && $text == "كتم" or $rt && $text == "اكتم" and $text==$settings["information"]["ktm"] ){
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
-if ( $statusrt != 'creator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$LEGR) && !in_array($re_id,$nazar) && !in_array($re_id,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $statusrt != 'creator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$carlos) && !in_array($re_id,$nazar) && !in_array($re_id,$eri)) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"⋄︙العضو - [$re_name](tg://user?id=$re_id)
@@ -12448,8 +12436,8 @@ bot('sendmessage',[
 }
 }
 if ($rt && $text == "الغاء كتم"){
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
-if ( $statusrt != 'creator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$LEGR) && !in_array($re_id,$nazar) && !in_array($re_id,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $statusrt != 'creator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$carlos) && !in_array($re_id,$nazar) && !in_array($re_id,$eri)) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
@@ -12483,7 +12471,7 @@ bot('deletemessage',[
 }
 $kakeiic = $kakeii['kakei'];
 if( $text == "المكتومين" or $text == "مكتومين" and $kakeii['kakei']!== NULL){
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 $kakeiic = $kakeii['kakei'];
 for($z = 0;$z <= count($kakeiic)-1;$z++){
 $Apikakeiic = json_decode(file_get_contents("http://api.telegram.org/bot".API_KEY."/getChat?chat_id=$kakeiic[$z]"));
@@ -12509,7 +12497,7 @@ $result3",
 }
 }
 if($text == "مسح المكتومين" or $text == "مسح مكتومين"){
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 file_put_contents("msiss/$chat_id/miss.json","");
 bot("SendMessage",[
 'chat_id'=>$chat_id,
@@ -12523,8 +12511,8 @@ bot("SendMessage",[
 }
 $silent = $settings["silentlist"];
 if($rt && $text == "تقييد" or $rt && $text == "تقيد" and $text==$settings["information"]["tkeed"] and !in_array($re_id,$silent)){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
-if ( $statusrt != 'creator' && $statusrt != 'administrator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$LEGR) && !in_array($re_id,$nazar) && !in_array($re_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $statusrt != 'creator' && $statusrt != 'administrator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$carlos) && !in_array($re_id,$nazar) && !in_array($re_id,$eri)) {
 $add = $settings["information"]["added"];
 if ($add == true){
 bot('restrictChatMember',[
@@ -12566,8 +12554,8 @@ bot('sendmessage',[
 }
 elseif (strpos($text, "تقييد لمدة ") !== false && $rt) {
 if(!in_array($re_id,$silent)){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
-if ( $statusrt != 'creator' && $statusrt != 'administrator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$LEGR) && !in_array($re_id,$nazar) && !in_array($re_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $statusrt != 'creator' && $statusrt != 'administrator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$mmyaz) && !in_array($re_id,$developer) && !in_array($re_id,$carlos) && !in_array($re_id,$nazar) && !in_array($re_id,$eri)) {
 $add = $settings["information"]["added"];
 $we = str_replace(['كتم لمدة '],'',$text );
 if ($we <= 1000 && $we >= 1){
@@ -12623,7 +12611,7 @@ bot('sendmessage',[
 }
 }
 $idp == file_get_contents("data/$chat_id/bans.txt");
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 if($rt and $text == "الغاء تقيد" or $rt and $text == "الغاء تقييد" or $rt and $text == "الغاء التقييد"){
 bot('restrictChatMember',[
 'user_id'=>$re_id,
@@ -12651,7 +12639,7 @@ file_put_contents("data/$chat_id.json",$settings);
 }
 $silent = $settings["silentlist"];
 if($text == "المقيدين" or $text == "قائمة المقيدين" or $text == "قائمه المقيدين" and $settings["silentlist"]!== NULL){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 $silent = $settings["silentlist"];
 for($z = 0;$z <= count($silent)-1;$z++){
 $Apimktom = json_decode(file_get_contents("http://api.telegram.org/bot".API_KEY."/getChat?chat_id=$silent[$z]"));
@@ -12667,7 +12655,7 @@ $result",
 }
 }
 if($text == "مسح المقيدين" or $text == "مسح المقيديين"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) {
 $add = $settings["information"]["added"];
 if ($add == true){
 $silent = $settings["silentlist"];
@@ -12719,7 +12707,7 @@ bot('sendmessage',[
 [['text'=>"السرطان.",'callback_data'=>"السرطان#$from_id2"],['text'=>"الاسد.",'callback_data'=>"الاسد#$from_id2"],['text'=>"العذراء.",'callback_data'=>"العذراء#$from_id2"]],
 [['text'=>"الميزان.",'callback_data'=>"الميزان#$from_id2"],['text'=>"العقرب.",'callback_data'=>"العقرب#$from_id2"],['text'=>"القوس.",'callback_data'=>"القوس#$from_id2"]],
 [['text'=>"الجدي.",'callback_data'=>"الجدي#$from_id2"],['text'=>"الدلو.",'callback_data'=>"الدلو#$from_id2"],['text'=>"الحوت.",'callback_data'=>"الحوت#$from_id2"]],
-[['text'=>"𝘁??𝗲𝗺 𝗟𝗲𝗴𝗿.",'url'=>"https://t.me/FunctionCode"]],
+[['text'=>"𝘁??𝗲𝗺 𝗰𝗮𝗿𝗹𝗼𝘀.",'url'=>"https://t.me/QQ2_Q"]],
 ]])]);}
 $ex = explode("#",$data);
 $array = array("الحمل","الثور","الجوزاء","السرطان","الاسد","العذراء","الميزان","العقرب","القوس","الجدي","الدلو","الحوت");
@@ -12737,7 +12725,7 @@ bot('EditMessageText',[
 [['text'=>"السرطان.",'callback_data'=>"السرطان#$from_id2"],['text'=>"الاسد.",'callback_data'=>"الاسد#$from_id2"],['text'=>"العذراء.",'callback_data'=>"العذراء#$from_id2"]],
 [['text'=>"الميزان.",'callback_data'=>"الميزان#$from_id2"],['text'=>"العقرب.",'callback_data'=>"العقرب#$from_id2"],['text'=>"القوس.",'callback_data'=>"القوس#$from_id2"]],
 [['text'=>"الجدي.",'callback_data'=>"الجدي#$from_id2"],['text'=>"الدلو.",'callback_data'=>"الدلو#$from_id2"],['text'=>"الحوت.",'callback_data'=>"الحوت#$from_id2"]],
-[['text'=>"𝘁𝗲𝗲𝗺 𝗟𝗲𝗴𝗿.",'url'=>"https://t.me/FunctionCode"]],
+[['text'=>"𝘁𝗲𝗲𝗺 𝗰𝗮𝗿𝗹𝗼𝘀.",'url'=>"https://t.me/QQ2_Q"]],
 ]]),'parse_mode'=>"MarkDown",
 ]);}}
 $array = array("الحمل","الثور","الجوزاء","السرطان","الاسد","العذراء","الميزان","العقرب","القوس","الجدي","الدلو","الحوت");
@@ -12754,7 +12742,7 @@ bot('sendmessage',[
 [['text'=>"السرطان.",'callback_data'=>"السرطان#$from_id2"],['text'=>"الاسد.",'callback_data'=>"الاسد#$from_id2"],['text'=>"العذراء.",'callback_data'=>"العذراء#$from_id2"]],
 [['text'=>"الميزان.",'callback_data'=>"الميزان#$from_id2"],['text'=>"العقرب.",'callback_data'=>"العقرب#$from_id2"],['text'=>"القوس.",'callback_data'=>"القوس#$from_id2"]],
 [['text'=>"الجدي.",'callback_data'=>"الجدي#$from_id2"],['text'=>"الدلو.",'callback_data'=>"الدلو#$from_id2"],['text'=>"الحوت.",'callback_data'=>"الحوت#$from_id2"]],
-[['text'=>"𝘁𝗲𝗲𝗺 𝗟𝗲𝗴𝗿.",'url'=>"https://t.me/FunctionCode"]],
+[['text'=>"𝘁𝗲𝗲𝗺 𝗰𝗮𝗿𝗹𝗼𝘀.",'url'=>"https://t.me/QQ2_Q"]],
 ]]),'parse_mode'=>"MarkDown",
 ]);}
 $from_id = $message->from->id;
@@ -12841,7 +12829,7 @@ if($text == "اذاعه بالتوجيه" || $text == "⋄ توجيه عام" ||
     file_put_contents("Fri3nd_s/iBadlz.txt","iBadlz");
     bot('sendmessage',[
     'chat_id'=>$chat_id,
-    'text'=>"*⌔ اهلا عزيزي الـمطور ، 
+    'text'=>"*✵⁞ اهلا عزيزي الـمطور ، 
 ⌯⁞ قم بتوجيه رسالتك الان ...
 *
 ",'parse_mode'=>"MARKDOWN",
@@ -12866,7 +12854,7 @@ bot('forwardMessage',[
 } 
 bot('sendMessage',[
           'chat_id'=>$chat_id,
-          'text'=>"*⌔ اهلا عزيزي الـمطور ، 
+          'text'=>"*✵⁞ اهلا عزيزي الـمطور ، 
  ⌯⁞ تم ارسال رسالتك الى ⋙ $MOhaMMed عضوا
 و ⋙ $MoHaMMedd مجموعة*
 ",'parse_mode'=>"MARKDOWN",
@@ -12885,7 +12873,7 @@ if($text == "اذاعه خاص" || $text =="⋄ اذاعه خاص" and $from_id 
     file_put_contents("Fri3nd_s/iBadlz.txt","JJ119");
     bot('sendmessage',[
     'chat_id'=>$chat_id,
-    'text'=>"*⌔ اهلا عزيزي الـمطور ، قم بأرسال رسالتك
+    'text'=>"*✵⁞ اهلا عزيزي الـمطور ، قم بأرسال رسالتك
 ⌯⁞ ملاحظةهہ : يمكنك استعمال الماركداون ،! *",
 'parse_mode'=>"MarkDown",
     'reply_to_message_id'=>$message->message_id
@@ -12904,7 +12892,7 @@ if($message and $GG1ZZ == "JJ119" and $from_id == $sudo ){
 $MOhaMMed = count($pirvate)-1;
 bot('sendMessage',[
           'chat_id'=>$chat_id,
-          'text'=>"*⌔ اهلا عزيزي الـمطور ، 
+          'text'=>"*✵⁞ اهلا عزيزي الـمطور ، 
  ⌯⁞ تم ارسال رسالتك الى $MOhaMMed عضوا ،*",
     'parse_mode'=>"MARKDOWN",
     'reply_to_message_id'=>$message->message_id
@@ -12914,7 +12902,7 @@ if ($text == "اذاعه للكل" || $text == "اذاعه عام" ||$text == "�
     file_put_contents("Fri3nd_s/iBadlz.txt","LE_C4_KR");
     bot('sendmessage',[
     'chat_id'=>$chat_id,
-    'text'=>"*⌔ اهلا عزيزي الـمطور ، قم بأرسال رسالتك
+    'text'=>"*✵⁞ اهلا عزيزي الـمطور ، قم بأرسال رسالتك
 ⌯⁞ ملاحظةهہ : يمكنك استعمال الماركداون ، *",
 'parse_mode'=>"MARKDOWN",
     'reply_to_message_id'=>$message->message_id
@@ -12942,7 +12930,7 @@ for ($i=0; $i<count($pirvate); $i++) {
 bot('sendMessage',[
           'chat_id'=>$chat_id,
           'text'=>"*
-⌔ اهلا عزيزي الـمطور ، 
+✵⁞ اهلا عزيزي الـمطور ، 
  ⌯⁞ تم ارسال رسالتك الى ⋙ $MOhaMMed عضوا
 و ⋙ $MoHaMMedd مجموعة*",
  'parse_mode'=>"MarkDown",
@@ -12954,7 +12942,7 @@ if($text == "اذاعه خاص بالتوجيه" || $text == "⋄ توجيه خ�
     file_put_contents("Fri3nd_s/iBadlz.txt","od_1j");
     bot('sendmessage',[
     'chat_id'=>$chat_id,
-    'text'=>"*⌔ اهلا عزيزي الـمطور ، قم بتوجيه رسالةه*",
+    'text'=>"*✵⁞ اهلا عزيزي الـمطور ، قم بتوجيه رسالةه*",
     'parse_mode'=>"MARKDOWN",
     'reply_to_message_id'=>$message->message_id
   ]);
@@ -12971,7 +12959,7 @@ bot('forwardMessage',[
 $MOhaMMed = count($pirvate)-1;
 bot('sendMessage',[
           'chat_id'=>$chat_id,
-          'text'=>"*⌔ اهلا عزيزي الـمطور ، 
+          'text'=>"*✵⁞ اهلا عزيزي الـمطور ، 
  ⌯⁞ تم ارسال رسالتك الى ⋙ $MOhaMMed عضوا
 و ⋙ $MoHaMMedd مجموعة*",
 'parse_mode'=>"MARKDOWN",
@@ -13103,7 +13091,7 @@ bot('sendmessage',[
   'reply_to_message_id'=>$message->message_id,
  'reply_markup'=>json_encode([
 'inline_keyboard'=>[
-[['text'=>"",'url'=>"t.me/FunctionCode"]],
+[['text'=>"",'url'=>"t.me/FT_III"]],
 ]])
 ]);
 }}}
@@ -13122,7 +13110,7 @@ $wel
   'reply_to_message_id'=>$message->message_id,
  'reply_markup'=>json_encode([
 'inline_keyboard'=>[
-[['text'=>"",'url'=>"t.me/FunctionCode"]],
+[['text'=>"",'url'=>"t.me/FT_III"]],
 ]])
 ]);
 }}}
@@ -13161,7 +13149,7 @@ bot("sendMessage",[
  'reply_to_message_id'=>$message_id
 ,]);}
 ####
-if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)){
+if($status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)){
 if($rt and $text == "ضع صوره" or $text == "ضع صورة" and $re_msd->photo){
  $file = "https://api.telegram.org/file/bot".API_KEY."/".bot('getfile',['file_id'=>$re_msd->photo[1]->file_id])->result->file_path; file_put_contents("$chat_id.jpg",file_get_contents($file));
 bot('setChatPhoto',[
@@ -13180,7 +13168,7 @@ bot('sendmessage',[
 unlink("$chat_id.jpg");
 }
 }
-if($status != 'creator' or $status != 'administrator' and !in_array($from_id,$Dev) and !in_array($from_id,$developer) and !in_array($from_id,$LEGR) and !in_array($from_id,$nazar) and !in_array($from_id,$eri)){
+if($status != 'creator' or $status != 'administrator' and !in_array($from_id,$Dev) and !in_array($from_id,$developer) and !in_array($from_id,$carlos) and !in_array($from_id,$nazar) and !in_array($from_id,$eri)){
 if($rt and $text == "ضع صوره" or $text == "ضع صورة" and $re_msd->photo){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -13226,7 +13214,7 @@ bot('sendvoice',[
 'voice'=>"t.me/D_UIII/$rand",
 'reply_to_message_id'=>$message_id,
 'reply_markup'=>json_encode([
-'inline_keyboard'=>[[['text'=>"- LEGR .",'url'=>"t.me/FunctionCode"]],]])]);}}
+'inline_keyboard'=>[[['text'=>"- CaRloS .",'url'=>"t.me/FT_III"]],]])]);}}
 #┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 $re = $update->message->reply_to_message;
 $me = $message->reply_to_message;  
@@ -13243,7 +13231,7 @@ bot('sendMessage',[
 }
 #┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 elseif($text =="تعطيل التاك" or $text =="تعطيل الهاش تاك"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -13270,7 +13258,7 @@ bot('sendmessage',[
 }
 }
 elseif($text =="تفعيل التاك" or $text =="تفعيل  الهاش تاك"){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$AUBEHAB) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {$add = $settings["information"]["added"];
 if ($add == true) {
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -13317,7 +13305,7 @@ $settings = json_encode($settings,true);
 file_put_contents("data/$chat_id.json",$settings);
 }}}
 elseif($text == "تاك" or $text == "تاك الكل" or $text == "تاك للكل"  and $text==$settings["information"]["tagall"]){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$AUBEHAB) or in_array($from_id,$nazar)) {
 $lockcmd = $settings["lock"]["tag"];
 if($lockcmd == "مفتوح"){
 $taag = $settings["$chat_id"]["tagusermy"];
@@ -13471,7 +13459,7 @@ if ($text =="اطردني" and in_array($from_id,$admin_user)){
  'reply_to_message_id'=>$TTK,
  ]);
  }
- if ($text =="اطردني" and in_array($from_id,$LEGR)){
+ if ($text =="اطردني" and in_array($from_id,$carlos)){
  bot("sendMessage",[
  "chat_id"=>$chat_id,
  "text"=>"
@@ -13517,7 +13505,7 @@ bot('sendMessage',[ 'chat_id'=>$chat_id, 'text'=>"⋄︙عزيزي ← [$first_n
 ⋄︙نبذتك ← $biio
 ",'parse_mode'=>"MARKDOWN",'reply_to_message_id'=>$message_id, ]);}
 
-#----------(LEGR)----------#
+#----------(carlos)----------#
 $x = 0;
 $tags = 0;
 $get = file_get_contents("data/$chat_id/all.json");
@@ -13526,7 +13514,7 @@ if($message and  ! in_array ($from_id, $getx)){
 file_put_contents("data/$chat_id/all.json","$from_id\n", FILE_APPEND);
 } 
 if($text == "@all"){  
-if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {
+if ( $status == 'creator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {
 for($i=0;$i<count($getx);$i++){
 if ($x == 5 or $x == $tags or $i == 0 ){
 $tags = $x + 5;
@@ -13548,9 +13536,9 @@ bot('sendMessage', [
 }
 }
 }
-#----------(LEGR)----------#
+#----------(carlos)----------#
 
-if($status == "creator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$AUBEHAB) || in_array($from_id,$admin_user) || in_array($from_id,$manger) or in_array($from_id,$LEGR) or in_array($from_id,$eri) || in_array($from_id,$nazar)) {
+if($status == "creator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer) || in_array($from_id,$AUBEHAB) || in_array($from_id,$admin_user) || in_array($from_id,$manger) or in_array($from_id,$carlos) or in_array($from_id,$eri) || in_array($from_id,$nazar)) {
 if($rt && $text == "رفع مطي" and !in_array($re_id,$motay)){
 			file_put_contents("data/motay/$chat_id.txt",$re_id . "\n" , FILE_APPEND);
 			file_put_contents("data/motay/$chat_id/mange.txt" , " *𓆩* [" . "@". $re_user ."] *𓆪* " . "»" . " *𓆩* `". $re_id ."` *𓆪* ". "\n" , FILE_APPEND);
@@ -13624,7 +13612,7 @@ bot('SendMessage',['chat_id'=>$chat_id,
 }
 
 if($text == "الغاء قائمة التثبيت" ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$nazar) or in_array($from_id,$eri)) { 
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$manger) or in_array($from_id,$admin_user) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$nazar) or in_array($from_id,$eri)) { 
 bot('unpinAllChatMessages',[
 'chat_id'=>$chat_id,
 ]);
@@ -13702,17 +13690,17 @@ bot('sendmessage',[
 if($text =="نادي المطور"){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
-'text'=>"⌔ عزيزي ⋙「 [$first_name](tg://user?id=$from_id) 」 
-⌔ اسم المطور ⋙ $NameDev
-⌔ معرف المطور ⋙ [$DevUser]
-⌔ هل انته متأكد من منادات المطور
-⌔ اذا تقصد غير شخص اضغط الغاء"
+'text'=>"✵⁞ عزيزي ⋙「 [$first_name](tg://user?id=$from_id) 」 
+✵⁞ اسم المطور ⋙ $NameDev
+✵⁞ معرف المطور ⋙ [$DevUser]
+✵⁞ هل انته متأكد من منادات المطور
+✵⁞ اذا تقصد غير شخص اضغط الغاء"
 ,'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 'reply_to_message_id'=>$message_id,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ نعم ⁞✵' ,'callback_data'=>"NDVE"],['text'=>'⌔ الغاء ⁞✵' ,'callback_data'=>"delDve"]],
-[['text'=>"⌔ المطور ⁞✵",'url'=>"t.me/$KKYKKN"]],
+[['text'=>'✵⁞ نعم ⁞✵' ,'callback_data'=>"NDVE"],['text'=>'✵⁞ الغاء ⁞✵' ,'callback_data'=>"delDve"]],
+[['text'=>"✵⁞ المطور ⁞✵",'url'=>"t.me/$KKYKKN"]],
 ]])
 ]); 
 }
@@ -13722,7 +13710,7 @@ $mem = bot('getchatmemberscount',['chat_id'=>$chat_id])->result;
 bot('EditMessageText',[
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'text'=>"⌔ تم منادات المطور انتظر للرد عليك",
+'text'=>"✵⁞ تم منادات المطور انتظر للرد عليك",
 'parse_mode'=>'MarkDown',
 'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
@@ -13734,20 +13722,20 @@ $IDMAMBRE = $message->from->id;
 $export = file_get_contents("https://api.telegram.org/bot$token/exportChatInviteLink?chat_id=$chat_id2");
 $jsonlink = json_decode($export, true);
 $getlinkde = $jsonlink['result'];
-bot('sendmessage',['chat_id'=>$Dev[0],'text'=>"⌔ هناك شخص بحاجه الي مساعدة
+bot('sendmessage',['chat_id'=>$Dev[0],'text'=>"✵⁞ هناك شخص بحاجه الي مساعدة
 ━━━━━━━━━━━━━
-⌔ الاسم ⋙ $name2
-⌔ الايدي ⋙ $from_id2
-⌔ المعرف ⋙ [@$username2]
+✵⁞ الاسم ⋙ $name2
+✵⁞ الايدي ⋙ $from_id2
+✵⁞ المعرف ⋙ [@$username2]
 ━━━━━━━━━━━━━
-⌔ معلومات المجموعه
-⌔ الايدي ⋙ $chat_id2
+✵⁞ معلومات المجموعه
+✵⁞ الايدي ⋙ $chat_id2
 ━━━━━━━━━━━━━
-⌔ الرابط ⋙ $getlinkde
+✵⁞ الرابط ⋙ $getlinkde
 ",]);}
 if($data=="delDve"){
 bot ('EditMessageText',['chat_id'=>$chat_id2,'message_id'=>$message_id2,
-'text'=>"⌔ تم الغاء امر منادات المطور",'parse_mode'=>'MarkDown', 'disable_web_page_preview'=>true, 'reply_to_message_id'=>$message->message_id,]);
+'text'=>"✵⁞ تم الغاء امر منادات المطور",'parse_mode'=>'MarkDown', 'disable_web_page_preview'=>true, 'reply_to_message_id'=>$message->message_id,]);
 sleep(15);
 bot('deletemessage',[
  'chat_id'=>$chat_id2,
@@ -13762,14 +13750,14 @@ if($settings["lock"]["zkrf"] == "مقفول"){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"
-⌔ اهلا بك  في قسم حساب العمر
+✵⁞ اهلا بك  في قسم حساب العمر
 ⌯⁞ اهلا بك » [$first_name](tg://user?id=$from_id) 
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 ",
 'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ حساب العمر الان ⁞✵','callback_data'=>'ii']],
+[['text'=>'✵⁞ حساب العمر الان ⁞✵','callback_data'=>'ii']],
 ]
 ])
 ]);
@@ -13812,7 +13800,7 @@ $seconds = $diff->h + ($diff->days * $hours_in_day * $minutes_in_hour * $seconds
 bot('Sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>" 
-⌔ العضو » [$first_name](tg://user?id=$from_id) 
+✵⁞ العضو » [$first_name](tg://user?id=$from_id) 
 ⌯⁞ تم حساب عمرك بالتفصيل،
 ⌯⁞ عمرك هوا الان : $years.» سنه  $mn.»اشهر،
 ⌯⁞ مره على ولادتك : $months.» شهر،
@@ -13827,7 +13815,7 @@ bot('Sendmessage',[
 'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
 "reply_markup"=>json_encode([
 "inline_keyboard"=>[
-[['text'=>'⌔ حساب العمر مجددأ ⁞✵','callback_data'=>'ii']],
+[['text'=>'✵⁞ حساب العمر مجددأ ⁞✵','callback_data'=>'ii']],
 ]
 ])
 ]);
@@ -13896,26 +13884,7 @@ bot('sendmessage',[
 'reply_to_message_id'=>$message->message_id,
 ]);
 }}
-#############
-if($text == "مبرمج السورس" or $text == "مبرمج سورس"){
-bot('sendphoto',[
-'chat_id'=>$chat_id,
-'photo'=>"https://t.me/X_SIII/9",
-'caption' =>"┏•━•━•━ 『𝙻𝙴𝙶𝚁』 ━•━•━•┓
-╏⍟ 𝚆𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 
-╏⍟ 𝙸𝙽𝙵𝙾 𝙳𝙴𝚅 𝚂𝙾𝙺𝚁𝙲𝙴 
-╏⍟ $time
-┗•━•━•━ 『𝙻𝙴𝙶𝚁』 ━•━•━•┛
-╏⍟ 𝙲𝙾𝙼𝙼𝙺𝙽𝙸𝙲𝙰𝚃𝙸𝙾𝙽 𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁
-",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
-'reply_to_message_id'=>$message_id,
-"reply_markup"=>json_encode([
-"inline_keyboard"=>[
-[['text'=>"⌔ 𝙱𝙾𝚃 𝙳??𝚅 ⁞✵",'url'=>"t.me/B8_8BOT"]],
-[['text'=>"⌔ 𝙳𝙴𝚅 ⁞✵",'url'=>"KKDRR"],['text'=>"⌔ 𝙲𝙷  ⁞✵",'url'=>"t.me/FunctionCode"]],
-]])
-]); 
-}
+############
 ############     
 elseif( $text =="تفعيل ملف game"){
 if ( in_array($from_id,$Dev) or in_array($from_id,$eri)) {$add = $settings["information"]["added"];
@@ -13924,7 +13893,7 @@ if ($add == true) {
  'chat_id'=>$chat_id,
  'text'=>"⋄︙الملف ⋙ *Game*
 ⋄︙تم تفعيله في البوت بنجاح
-⋄︙[تفاصيل الملف](https://t.me/INNV8/2)
+⋄︙[تفاصيل الملف](https://t.me/X_SIII/2)
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
   'reply_to_message_id'=>$message_id,
 'reply_markup'=>$inlinebutton,
@@ -14057,7 +14026,7 @@ $message_id2 = $update->message_id;
 $yotup = str_replace("تحميل ", "", $text);
 if($text == "تحميل $yotup"){
 $keyboard = [];
-$search = json_decode(file_get_contents("https://ggrff7hnn.ml/Yote/yotube_search_v2.1(LEGR).php?search=".urlencode($yotup)),true);
+$search = json_decode(file_get_contents("https://ggrff7hnn.ml/Yote/yotube_search_v2.1(carlos).php?search=".urlencode($yotup)),true);
 for($b=1; $b <= 10; $b++){   
 $keyboard['inline_keyboard'][] = [['text'=>$search['results'][$b]['title'], 'callback_data'=>"jaemax##".$search['results'][$b]['url']]];
 $reply_markup=json_encode($keyboard);
@@ -14076,7 +14045,7 @@ $api = json_decode(file_get_contents("https://alsh-bg.ml/api/YouTube_Free.php?ur
 $url = $api['info'][0]['url'];
 $title = $api['info'][0]['title'];
 $get = file_get_contents($url);
-file_put_contents("LEGR.ogg",$get);
+file_put_contents("carlos.ogg",$get);
 bot('deleteMessage',[
 'chat_id'=>$update->callback_query->message->chat->id,
 'message_id'=>$update->callback_query->message->message_id,
@@ -14084,12 +14053,12 @@ bot('deleteMessage',[
 bot('sendvoice',[ 
 'chat_id'=>$chat_id2,
 'message_id'=>$message_id2,
-'voice'=>new CURLFile("LEGR.ogg"),
+'voice'=>new CURLFile("carlos.ogg"),
 'caption' =>"*⋄︙تم تنزيل الاغنية بشكل بصمة ☑️*",
 'parse_mode'=>"MARKDOWN",
   'title'=>"$title",
      ]);
-unlink("LEGR.ogg");
+unlink("carlos.ogg");
 }
 ############
 if ( $text =="⋄ تفعيل الاحصائيات" or $text == "تفعيل الاحصائيات"){
@@ -14150,7 +14119,7 @@ if ($add == true) {
  'chat_id'=>$chat_id,
  'text'=>"⋄︙الملف ⋙ *Zhrafa*
 ⋄︙تم تفعيله في البوت بنجاح
-⋄︙[تفاصيل الملف](https://t.me/INNV8/3)
+⋄︙[تفاصيل الملف](https://t.me/X_SIII/3)
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
   'reply_to_message_id'=>$message_id,
 'reply_markup'=>$inlinebutton,
@@ -14199,7 +14168,7 @@ bot('sendmessage',[
 $Zhrafajson = file_get_contents('data/Zhrafa.json');
 if($Zhrafajson == "✔"){
 if ($text =="تفعيل الزخرفه" ){
-if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$LEGR) || in_array($from_id,$AUBEHAB) || in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$carlos) || in_array($from_id,$AUBEHAB) || in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {	
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -14227,7 +14196,7 @@ bot('sendmessage',[
 $Zhrafajson = file_get_contents('data/Zhrafa.json');
 if($Zhrafajson == "✔"){
 if($text =="تعطيل الزخرفه" ){
-if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$LEGR) || in_array($from_id,$AUBEHAB) || in_array($from_id,$eri)) {$add = $settings["information"]["added"];
+if($status == "creator" ||  $status == "administrator" ||  in_array($from_id,$Dev) || in_array($from_id,$developer)|| in_array($from_id,$carlos) || in_array($from_id,$AUBEHAB) || in_array($from_id,$eri)) {$add = $settings["information"]["added"];
 if ($add == true) {
 	bot('sendmessage',[
 	'chat_id'=>$chat_id,
@@ -14285,7 +14254,7 @@ if ($add == true) {
  'chat_id'=>$chat_id,
  'text'=>"⋄︙الملف ⋙ *ChangeName*
 ⋄︙تم تفعيله في البوت بنجاح
-⋄︙[تفاصيل الملف](https://t.me/INNV8/4)
+⋄︙[تفاصيل الملف](https://t.me/X_SIII/4)
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
   'reply_to_message_id'=>$message_id,
 'reply_markup'=>$inlinebutton,
@@ -14338,7 +14307,7 @@ if ($add == true) {
  'chat_id'=>$chat_id,
  'text'=>"⋄︙الملف ⋙ *ChangeUser*
 ⋄︙تم تفعيله في البوت بنجاح
-⋄︙[تفاصيل الملف](https://t.me/INNV8/5)
+⋄︙[تفاصيل الملف](https://t.me/X_SIII/5)
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
   'reply_to_message_id'=>$message_id,
 'reply_markup'=>$inlinebutton,
@@ -14391,7 +14360,7 @@ if ($add == true) {
  'chat_id'=>$chat_id,
  'text'=>"⋄︙الملف ⋙ *Changephotos*
 ⋄︙تم تفعيله في البوت بنجاح
-⋄︙[تفاصيل الملف](https://t.me/INNV8/7)
+⋄︙[تفاصيل الملف](https://t.me/X_SIII/7)
 ",'parse_mode'=>"markdown",'disable_web_page_preview'=>true,
   'reply_to_message_id'=>$message_id,
 'reply_markup'=>$inlinebutton,
@@ -14530,18 +14499,18 @@ $GGAME = "$gamejson";
 if(in_array($from_id,$Dev) or in_array($from_id,$eri)){
 bot('sendMessage',[
 'chat_id'=>$chat_id, 
-'text'=>"⋄︙قائمة ملفات متجر سورس ليجر
+'text'=>"⋄︙قائمة ملفات متجر سورس النيزك
 ⋄︙الملفات المتوفره حاليا ↫ ⤈
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⋄︙[ملف العاب اونلاين](https://t.me/INNV8/3) ↫ ⤈
+⋄︙[ملف العاب اونلاين](https://t.me/X_SIII/3) ↫ ⤈
 1~ : game ↬ ($gamejson)
-⋄︙[ملف زخرفه](https://t.me/INNV8/4) ↫ ⤈
+⋄︙[ملف زخرفه](https://t.me/X_SIII/4) ↫ ⤈
 2~ : Zhrafa ↬ ($Zhrafajson)
-⋄︙[ملف تنبيه عند تغير الاسم](https://t.me/INNV8/5) ↫ ⤈
+⋄︙[ملف تنبيه عند تغير الاسم](https://t.me/X_SIII/5) ↫ ⤈
 3~ : ChangeName ↬ ($ChangeName)
-⋄︙[ملف تنبيه عند تغير المعرف](https://t.me/INNV8/6) ↫ ⤈
+⋄︙[ملف تنبيه عند تغير المعرف](https://t.me/X_SIII/6) ↫ ⤈
 4~ : ChangeUser ↬ ($ChangeUser)
-⋄︙[ملف تنبيه عند تغير الصورة](https://t.me/INNV8/7) ↫ ⤈
+⋄︙[ملف تنبيه عند تغير الصورة](https://t.me/X_SIII/7) ↫ ⤈
 5~ : Changephotos ↬ ($Changephotos)
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
 ⋄︙علامة ↫ (✔) تعني الملف مفعل
@@ -14591,7 +14560,7 @@ bot('sendMessage', [
 'chat_id' =>$chat_id,
 'parse_mode' =>"markdown", 
 'text' =>"*⋄︙تم حذف السؤال من قائمه ( كت تويت )
-⌔ السؤال : $text *",'reply_to_message_id'=>$message->message_id, 
+✵⁞ السؤال : $text *",'reply_to_message_id'=>$message->message_id, 
 ]);
 unset($json["kitdel"]);
 unset($json["kit"][$setwit]);
@@ -14623,7 +14592,7 @@ bot('sendmessage',[
 ]);
 $coss['malkbot'] = "ok_malk";
 $coss['malkkbot'] = "$from_id";
-file_put_contents("data/LEGR.json",json_encode($coss));
+file_put_contents("data/carlos.json",json_encode($coss));
 }
 }
 if($text and preg_match('/([0-9])/i',$text) and $malkbot == "ok_malk" and $malkkbot == $from_id){
@@ -14638,7 +14607,7 @@ bot('sendmessage',[
 ]);
 $coss['malk'] = $text;
 $coss['malkbot'] = "on";
-file_put_contents("data/LEGR.json",json_encode($coss));
+file_put_contents("data/carlos.json",json_encode($coss));
 }
 if($text=="حذف المالك الثاني" or $text=="⋄ حذف المالك الثاني"){
 if(in_array($from_id,$Dev)){
@@ -14653,7 +14622,7 @@ bot('sendmessage',[
 'parse_mode'=>"MarkDown",
 ]);
 $coss['malk'] = null;
-file_put_contents("data/LEGR.json",json_encode($coss));
+file_put_contents("data/carlos.json",json_encode($coss));
 }
 }
 
@@ -14697,14 +14666,30 @@ file_put_contents("data/kit.json",json_encode($json));
 ############
 $sorceu = file_get_contents("data/sorceu.json");
 if($text == "السورس" or $text == "سورس" or $text == "يا سورس" and $sorceu == null){
-bot("sendmessage",['chat_id'=>$chat_id,'text'=>"⋄︙𝘄𝗲𝗹𝗰𝗼𝗺𝗲 𝘁𝗼 𝘀𝗼𝘂𝗿𝗰𝗲 𝗟𝗲𝗴𝗿
-ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⋄︙[𝘀𝗼𝘂𝗿𝗰𝗲 𝗟𝗲𝗴𝗿](https://t.me/FunctionCode)
-⋄︙[𝗰𝗹𝗮𝘀𝗵 𝗶𝗱 𝗟𝗲𝗴𝗿](https://t.me/KKDRR)
-⋄︙[𝗳𝗲𝗹𝗶𝘀 𝘀𝗼𝘂𝗿𝗰𝗲](https://t.me/INNV8)
-⋄︙[𝘂𝗽𝗱𝗮𝘁𝗲 𝘀𝗼𝘂𝗿𝗰𝗲](https://t.me/P_P_9_P)
-ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-⋄︙[𝗱𝗲𝘃 𝘀𝗼𝘂𝗿𝗰𝗲](https://KKDRR)
+bot("sendmessage",['chat_id'=>$chat_id,'text'=>"
+ᯓnizk
+
+ ⌯- لتنصيب سورس النيزك الجديد v2.0.0 ⇓⇓⇓ 
+
+`cd ; git clone https://github.com/kiindi/NiZk.git; cd NiZk ; chmod +x ins.py ; python3 ins.py`
+
+⌯- فقط أضغط على الكود ☝🏿 ليتم النسخ 
+⌯- ثم الصقه بالترمنال وانتر تتنظر يتنصب...
+⌯- بعدها يطلب منك تخلي المعلومات
+⌯- اولا تدخل التوكن ثم انتر
+⌯- ثانيا ايدي المطور ثم انتر 
+
+⌯- كود الرن
+~ `./NiZk/run`
+
+⌯- كود الحذف
+
+~ `cd ; rm -rf *;killall screen`
+
+⌯- السورس يستخرج المعرف من الايدي
+⌯- لتغيير المطور الاساسي فقط ارسل للبوت 
+⌯- الامر {نقل ملكيه البوت} ثم اتبع التعليمات..
+: @kindi3 , @VoRcL
 ",'parse_mode'=>"Markdown",
 'disable_web_page_preview'=> true ,
 'reply_to_message_id'=>$message_id,
@@ -14721,9 +14706,9 @@ $sorceu
 }
 #######
 if( $text=="تحذير" && $rt){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {
 if ($tc == 'group' | $tc == 'supergroup'){
-if ( $statusrt != 'creator' && $statusrt != 'administrator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$manger) && !in_array($re_id,$developer) && !in_array($re_id,$LEGR) && !in_array($re_id,$eri) && !in_array($re_id,$nazar)) {
+if ( $statusrt != 'creator' && $statusrt != 'administrator' && !in_array($re_id,$Dev) && !in_array($re_id,$manger) && !in_array($re_id,$admin_user) && !in_array($re_id,$manger) && !in_array($re_id,$developer) && !in_array($re_id,$carlos) && !in_array($re_id,$eri) && !in_array($re_id,$nazar)) {
 $add = $settings["information"]["added"];
 if ($add == true) {
 $warn = $settings["warnlist"]["$re_id"];
@@ -14796,7 +14781,7 @@ else
 }
 }
 if($text=="مسح التحذير" && $rt ){
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {
 if ($tc == 'group' | $tc == 'supergroup'){  
 $add = $settings["information"]["added"];
 if ($add == true) {
@@ -14821,7 +14806,7 @@ file_put_contents("data/$chat_id.json",$settings);
 }
 if ( strpos($text , 'وضع تحذير') !== false  ) {
 $newdec = str_replace(['وضع تحذير'],'',$text);
-if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$LEGR) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {
+if ( $status == 'creator' or $status == 'administrator' or in_array($from_id,$Dev) or in_array($from_id,$developer) or in_array($from_id,$carlos) or in_array($from_id,$eri) or in_array($from_id,$nazar)) {
 $add = $settings["information"]["added"];
 if ($add == true) {
 if ($newdec <= 20 && $newdec >= 1){
@@ -14966,7 +14951,7 @@ bot('sendmessage',[
 $re = $message->reply_to_message;
 if($text=="fr#ar" and $re){
 $s = str_replace(' ','%20',$re->text);
-$fr = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(LEGR)translate.php?Language=ar&TO=fa&text=".$s);
+$fr = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(carlos)translate.php?Language=ar&TO=fa&text=".$s);
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"$fr",
@@ -14976,7 +14961,7 @@ bot('sendmessage',[
 $re = $message->reply_to_message;
 if($text=="en#ar" and $re){
 $H = str_replace(' ','%20',$re->text);
-$enar = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(LEGR)translate.php?Language=en&TO=ar&text=".$H);
+$enar = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(carlos)translate.php?Language=en&TO=ar&text=".$H);
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"$enar",
@@ -14986,7 +14971,7 @@ bot('sendmessage',[
 $re = $message->reply_to_message;
 if($text=="ar#fr" and $re){
 $Q = str_replace(' ','%20',$re->text);
-$arfr = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(LEGR)translate.php?Language=fa&TO=ar&text=".$Q);
+$arfr = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(carlos)translate.php?Language=fa&TO=ar&text=".$Q);
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"$arfr",
@@ -14996,7 +14981,7 @@ bot('sendmessage',[
 $re = $message->reply_to_message;
 if($text=="ar#en" and $re){
 $W = str_replace(' ','%20',$re->text);
-$aren = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(LEGR)translate.php?Language=ar&TO=en&text=".$W);
+$aren = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(carlos)translate.php?Language=ar&TO=en&text=".$W);
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"$aren",
@@ -15006,7 +14991,7 @@ bot('sendmessage',[
 $re = $message->reply_to_message;
 if($text=="ar#tr" and $re){
 $E = str_replace(' ','%20',$re->text);
-$artr = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(LEGR)translate.php?Language=ar&TO=tr&text=".$E);
+$artr = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(carlos)translate.php?Language=ar&TO=tr&text=".$E);
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"$artr",
@@ -15016,7 +15001,7 @@ bot('sendmessage',[
 $re = $message->reply_to_message;
 if($text=="tr#ar" and $re){
 $R = str_replace(' ','%20',$re->text);
-$trar = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(LEGR)translate.php?Language=ar&TO=tr&text=".$R);
+$trar = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(carlos)translate.php?Language=ar&TO=tr&text=".$R);
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"$trar",
@@ -15026,7 +15011,7 @@ bot('sendmessage',[
 $re = $message->reply_to_message;
 if($text=="en#tr" and $re){
 $Y = str_replace(' ','%20',$re->text);
-$entr = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(LEGR)translate.php?Language=en&TO=tr&text=".$Y);
+$entr = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(carlos)translate.php?Language=en&TO=tr&text=".$Y);
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"$entr",
@@ -15036,7 +15021,7 @@ bot('sendmessage',[
 $re = $message->reply_to_message;
 if($text=="tr#en" and $re){
 $T = str_replace(' ','%20',$re->text);
-$tren = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(LEGR)translate.php?Language=tr&TO=en&text=".$T);
+$tren = file_get_contents("https://abu-ehab-vip.ml/Abuehab/api(carlos)translate.php?Language=tr&TO=en&text=".$T);
 bot('sendmessage',[
 'chat_id'=>$chat_id,
 'text'=>"$tren",
@@ -15306,42 +15291,42 @@ bot("SendMessage",[
 $re_msd = $update->message->reply_to_message;
 if ($rt and $text == "تحويل" and $re_msd->video){
 $file = "https://api.telegram.org/file/bot$token/".bot('getfile',['file_id'=>$re_msd->video->file_id])->result->file_path;
-file_put_contents("data/LEGR.ogg",file_get_contents($file));
+file_put_contents("data/carlos.ogg",file_get_contents($file));
 bot('sendvoice',[
 'chat_id'=>$chat_id,
-'voice'=>new CURLFile("data/LEGR.ogg"),
+'voice'=>new CURLFile("data/carlos.ogg"),
 'caption'=>"⋄︙تم تحويل الفيديو ← بصمة",
 ]);
-unlink("data/LEGR.ogg");
+unlink("data/carlos.ogg");
 }
 if ($rt and $text == "تحويل" and $re_msd->voice){
 $file = "https://api.telegram.org/file/bot$token/".bot('getfile',['file_id'=>$re_msd->voice->file_id])->result->file_path;
-file_put_contents("data/LEGR.mp3",file_get_contents($file));
+file_put_contents("data/carlos.mp3",file_get_contents($file));
 bot('sendaudio',[
 'chat_id'=>$chat_id,
-'audio'=>new CURLFile("data/LEGR.mp3"),
+'audio'=>new CURLFile("data/carlos.mp3"),
 'caption'=>"⋄︙تم تحويل البصمة ← اغنية",
 ]);
-unlink("data/LEGR.mp3");
+unlink("data/carlos.mp3");
 }
 if ($rt and $text == "تحويل" and $re_msd->photo){
 $file = "https://api.telegram.org/file/bot$token/".bot('getfile',['file_id'=>$re_msd->photo[1]->file_id])->result->file_path;
-file_put_contents("data/LEGR.png",file_get_contents($file));
+file_put_contents("data/carlos.png",file_get_contents($file));
 bot('sendsticker',[
 'chat_id'=>$chat_id,
-'sticker'=>new CURLFile("data/LEGR.png"),
+'sticker'=>new CURLFile("data/carlos.png"),
 ]);
-unlink("data/LEGR.png");
+unlink("data/carlos.png");
 }
 if ($rt and $text == "تحويل" and $re_msd->sticker){
 $file = "https://api.telegram.org/file/bot$token/".bot('getfile',['file_id'=>$re_msd->sticker->file_id])->result->file_path;
-file_put_contents("data/LEGR.jpg",file_get_contents($file));
+file_put_contents("data/carlos.jpg",file_get_contents($file));
 bot('sendphoto',[
 'chat_id'=>$chat_id,
-'photo'=>new CURLFile("data/LEGR.jpg"),
+'photo'=>new CURLFile("data/carlos.jpg"),
 'caption'=>"⋄︙تم تحويل الملصق ← صوره",
 ]);
-unlink("data/LEGR.jpg");
+unlink("data/carlos.jpg");
 }
 #######
 $kabos = file_get_contents("data/kabos.json");
@@ -15357,8 +15342,8 @@ if($text =="/start" and $kabos == "kabos" and $from_id != $admin) {
 $times = date('h:i:s');
 $pirvate = explode("\n",file_get_contents("Fri3nd_s/pirvate.txt"));
 $forward = $update->message->forward_from;
-$mabLEGR = count($pirvate)-1;
-$groLEGR = count($groups)-1;
+$mabcarlos = count($pirvate)-1;
+$grocarlos = count($groups)-1;
 if(!@$username){$casss = "لايوجد يوزر";}elseif(@$username){$casss = "@$username";}
  bot("sendMessage",[
 "chat_id"=>$admin,
@@ -15368,8 +15353,8 @@ if(!@$username){$casss = "لايوجد يوزر";}elseif(@$username){$casss = "@
 ⋄︙ايديه ← $from_id
 ⋄︙يوزره ← $casss
 --------------------------------
-⋄︙الاعضاء ← $mabLEGR
-⋄︙الكروبات ← $groLEGR
+⋄︙الاعضاء ← $mabcarlos
+⋄︙الكروبات ← $grocarlos
 ⋄︙قام بدخول بوتك الان
 ⋄︙الوقت ← $times
 "]);} 
@@ -15384,7 +15369,7 @@ if($text =="⋄ تعطيل التنبيه" and $from_id == $admin) {
 unlink("data/kabos.json");
 }
 ########
-if($text == "⋄ تجربة السورس"){if(in_array($from_id,$Dev) or in_array($from_id,$eri)) {bot("sendmessage",['chat_id'=>$chat_id,'text'=>"⌔ *اليك قائمة تجربة السورس*\n━━━━━━━━━━━━━\n⌯⁞ [كروب تجربة السورس](https://t.me/P_TIII)\n⌯⁞ [قناة شروحات السورس](https://t.me/FunctionCode)\n━━━━━━━━━━━━━\n⌯⁞ [مطور السورس](https://KKDRR)",'parse_mode'=>"Markdown",'disable_web_page_preview'=> true ,'reply_to_message_id'=>$message_id,'reply_markup'=>json_encode(['inline_keyboard'=>[[['text'=>"⌯⁞ كروب تجربة السورس ⁞⌯",'url'=>"t.me/P_TIII"]],[['text'=>"⌯⁞ مطور السورس ⁞⌯",'url'=>"KKDRR"]],]])]);}}
+if($text == "⋄ تجربة السورس"){if(in_array($from_id,$Dev) or in_array($from_id,$eri)) {bot("sendmessage",['chat_id'=>$chat_id,'text'=>"✵⁞ *اليك قائمة تجربة السورس*\n━━━━━━━━━━━━━\n⌯⁞ [كروب تجربة السورس](https://t.me/THBBS)\n⌯⁞ [قناة شروحات السورس](https://t.me/TH3SS)\n━━━━━━━━━━━━━\n⌯⁞ [مطور السورس](https://t.me/Kindi3)",'parse_mode'=>"Markdown",'disable_web_page_preview'=> true ,'reply_to_message_id'=>$message_id,'reply_markup'=>json_encode(['inline_keyboard'=>[[['text'=>"⌯⁞ كروب تجربة السورس ⁞⌯",'url'=>"t.me/thbbs"]],[['text'=>"⌯⁞ مطور السورس ⁞⌯",'url'=>"t.me/$buy"]],]])]);}}
 #######
 if ($text == "⋄ تحديث" and in_array($from_id,$Dev)){
 bot ('sendMessage',['chat_id'=>$chat_id,'text'=>"⋄︙تم التحديث",'parse_mode'=>'MarkDown', 'disable_web_page_preview'=>true, 'reply_to_message_id'=>$message->message_id,]);}
@@ -15509,7 +15494,7 @@ if($text == "ترتيب الاوامر" || $text == "⋄ ترتيب الاوام
 ⋄︙مسح سحكاتي ↫ سح
 ⋄︙تغير الايدي ↫ تغ
 ꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ
-[SoUrcE LEGR](https://t.me/FunctionCode)",
+[Source nizk](https://t.me/th3ss)",
 'parse_mode'=>"markdown",'reply_to_message_id'=>$message_id,
  ]);
  } 
@@ -15551,10 +15536,10 @@ bot('sendphoto',[
 }
 #-----------------------#
 $bot_id = "1912009401";
-$LEGR = file_get_contents("data/LEGR.json");
-$LEGRs = file_get_contents("data/LEGRs.json");
+$carlos = file_get_contents("data/carlos.json");
+$carloss = file_get_contents("data/carloss.json");
 if($text=="ضع ترحيب عام"){
-file_put_contents("data/LEGRs.json","$from_id");
+file_put_contents("data/carloss.json","$from_id");
 if( in_array($from_id,$Dev)){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -15565,9 +15550,9 @@ bot('sendmessage',[
 'reply_to_message_id'=>$message->message_id,
 'parse_mode'=>"MarkDown",
 ]);
-file_put_contents("data/LEGR.json","LEGR");
+file_put_contents("data/carlos.json","CARLOS");
 }}
-if($text and $LEGR =="LEGR" and $LEGRs == $from_id){
+if($text and $carlos =="CARLOS" and $carloss == $from_id){
 if( in_array($from_id,$Dev)){
 bot('sendmessage',[
 'chat_id'=>$chat_id,
@@ -15579,7 +15564,7 @@ bot('sendmessage',[
 'parse_mode'=>"MarkDown",
 ]);
 file_put_contents("data/carllos.json","$text");
-unlink("data/LEGR.json");
+unlink("data/carlos.json");
 }}
 if( in_array($from_id,$Dev)){
   if($text == "تعين صورة ترحيب"){
@@ -15617,7 +15602,7 @@ if ($new and $new->id == $bot_id) {
 $tahmel = str_replace("تحميل ","",$text);
 if($text == "تحميل $tahmel"){
 $keyboard = [];
-$search = json_decode(file_get_contents("https://ggrff7hnn.ml/vip/vip2/yotube_search_v2.1(LEGR).php?search=".urlencode($tahmel)),true);
+$search = json_decode(file_get_contents("https://ggrff7hnn.ml/vip/vip2/yotube_search_v2.1(carlos).php?search=".urlencode($tahmel)),true);
 for($b=1; $b <= 10; $b++){   
 $keyboard['inline_keyboard'][] = [['text'=>$search['results'][$b]['title'], 'callback_data'=>"jaemax##".$search['results'][$b]['url']]];
 $reply_markup=json_encode($keyboard);
@@ -15636,7 +15621,7 @@ $api = json_decode(file_get_contents("https://alsh-bg.ml/api/YouTube_Free.php?ur
 $url = $api['info'][0]['url'];
 $title = $api['info'][0]['title'];
 $get = file_get_contents($url);
-file_put_contents("LEGR.ogg",$get);
+file_put_contents("carlos.ogg",$get);
 bot('deleteMessage',[
 'chat_id'=>$update->callback_query->message->chat->id,
 'message_id'=>$update->callback_query->message->message_id,
@@ -15649,7 +15634,7 @@ bot('sendmessage',[
 bot('sendvoice',[ 
 'chat_id'=>$update->callback_query->message->chat->id,
 'message_id'=>$update->callback_query->message->message_id,
-'voice'=>new CURLFile("LEGR.ogg"),
+'voice'=>new CURLFile("carlos.ogg"),
 'caption' =>"*
 ⋄︙تم تحميل ← Voice
 ⋄︙الاغنية ← $title
@@ -15657,7 +15642,7 @@ bot('sendvoice',[
 'parse_mode'=>"MARKDOWN",
   'title'=>"$title",
      ]);
-unlink("LEGR.ogg");
+unlink("carlos.ogg");
 }
 #---------#
 if($text == "تحديث السورس" || $text == "⋄ تحديث السورس" || $text == "تحديث سورس" and in_array($from_id,$Dev)){
